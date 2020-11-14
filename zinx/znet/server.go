@@ -52,19 +52,19 @@ func (s *Server) Start() {
 
 			// 3.3 TODO ServerStart() 处理该新链接请求的 业务 方法，此时应该有 handler 和 conn 是绑定的
 
-			// 我们这里暂时做一个最大512字节的回显服务
-			go func() {
-				// 不断的循环从客户端获取数据
-				for {
+			//这里暂时做一个最大512字节的回显服务
+			go func () {
+				//不断的循环从客户端获取数据
+				for  {
 					buf := make([]byte, 512)
 					cnt, err := conn.Read(buf)
 					if err != nil {
-						fmt.Println("recv buf err", err)
-						continue
+						fmt.Println("recv buf err ", err)
+						return
 					}
-					// 回显
-					if _, err := conn.Write(buf[:cnt]); err != nil {
-						fmt.Println("Write back buf err", err)
+					//回显
+					if _, err := conn.Write(buf[:cnt]); err !=nil {
+						fmt.Println("write back buf err ", err)
 						continue
 					}
 				}
@@ -77,6 +77,7 @@ func (s *Server) Stop() {
 	fmt.Println("[Stop] Zinx server , name", s.Name)
 
 	// TODO Server.Stop() 将其他需要清理的连接信息或者其他信息 也要一并停止或者清理
+
 }
 
 func (s *Server) Server() {
@@ -93,4 +94,12 @@ func (s *Server) Server() {
 
 // 创建一个服务器句柄
 
-func NewServer(name string)
+func NewServer(name string) ziface.IServer {
+	s := &Server{
+		Name:       name,
+		IPVersoion: "tcp4",
+		IP:         "0.0.0.0",
+		Port:       7777,
+	}
+	return  s
+}

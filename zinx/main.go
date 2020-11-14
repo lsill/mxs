@@ -1,15 +1,10 @@
 package main
 
-import "fmt"
+import "zinx/znet"
 
 func main() {
-	fmt.Println("dsdaasd")
+	s := znet.NewServer("[zinx v0.1]")
 
-	is := false
-	SetTrue(&is)
-	fmt.Println(is)
+	s.Server()
 }
 
-func SetTrue(is* bool){
-	*is = true
-}
