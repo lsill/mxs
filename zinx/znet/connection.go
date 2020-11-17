@@ -3,7 +3,7 @@ package znet
 import (
 	"net"
 	"zinx/ziface"
-	"zinx/zlog"
+	"zinx/log"
 )
 
 type Connection struct {
@@ -17,6 +17,8 @@ type Connection struct {
 	handleAPI ziface.HandFunc
 	// 告知该连接已经退出/停止的channel
 	ExitBuffChan chan bool
+	// 该连接的处理方法router
+	Router ziface.IRouter
 }
 
 // 创建连接的方法
@@ -33,21 +35,25 @@ func NewConnecion(conn *net.TCPConn, connId uint32, callback_api ziface.HandFunc
 
 // 处理conn读数据的Goroutine
 func (c *Connection) StartReader() {
-	zlog.Debug("Reader Goroutine is running")
-	defer zlog.Debug("%s conn reader exit!",c.RemoteAddr().String())
+	log.Debug("Reader Goroutine is running")
+	defer log.Debug("%s conn reader exit!",c.RemoteAddr().String())
 	defer c.Stop()
 	for {
 		// 读取我们最大的数据到buf中
 		buf := make([]byte, 512)
 		cnt, err := c.Conn.Read(buf)
 		if err != nil{
-			zlog.Error("recv buf err %v", err)
+			log.Error("recv buf err %v", err)
 			c.ExitBuffChan <- true
-			return
+			continue
+		}
+		req := Request{
+			conn: c,
+			data: buf,
 		}
 		// 调用当前连接业务（这里执行的是当前conn的绑定的handle方法）
 		if err := c.handleAPI(c.Conn, buf, cnt); err != nil {
-			zlog.Error("connId %v, handle is error",c.ConnID)
+			log.Error("connId %v, handle is error",c.ConnID)
 			c.ExitBuffChan <- true
 			return
 		}
