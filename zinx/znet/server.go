@@ -60,7 +60,7 @@ func (s *Server) Start() {
 
 			// 3.3 TODO ServerStart() 处理该新链接请求的 业务 方法，此时应该有 handler 和 conn 是绑定的
 
-			dealConn := NewConnecion(conn, cid, CallBackToClient)
+			dealConn := NewConnecion(conn, cid, s.Router)
 			cid++
 
 			// 3.4 启动当前连接的处理业务
@@ -88,7 +88,7 @@ func (s *Server) Server() {
 }
 
 func (s *Server) AddRouter(router ziface.IRouter) {
-
+	s.Router = router
 }
 
 // 创建一个服务器句柄
