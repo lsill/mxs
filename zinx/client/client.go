@@ -1,39 +1,61 @@
 package main
 
 import (
-	"fmt"
+	"io"
 	"net"
 	"time"
+	"zinx/log"
+	"zinx/znet"
 )
 
 func main() {
+	log.Debug("Client Test...Start")
+	time.Sleep(time.Second*3)
 
-	fmt.Println("Client Test ... start")
-	//3秒之后发起测试请求，给服务端开启服务的机会
-	time.Sleep(3 * time.Second)
-
-	conn,err := net.Dial("tcp", "127.0.0.1:7777")
+	conn ,err := net.Dial("tcp", "127.0.0.1:7777")
 	if err != nil {
-		fmt.Println("client start err, exit!")
+		log.Error("client dial err", err)
 		return
 	}
-
 	for {
-		_, err := conn.Write([]byte("hahaha"))
-		if err !=nil {
-			fmt.Println("write error err ", err)
-			return
-		}
-
-		buf :=make([]byte, 512)
-		cnt, err := conn.Read(buf)
+		// 创建一个封包对象 dp
+		dp := znet.NewDataPack()
+		msg, err := dp.Pack(znet.NewMsgPackage(0, []byte("Zinx 0.5 Client Test Message")))
 		if err != nil {
-			fmt.Println("read buf error ")
+			log.Error(" pack msg error")
 			return
 		}
-
-		fmt.Printf(" server call back : %s, cnt = %d\n", buf,  cnt)
-
+		_, err = conn.Write(msg)
+		if err != nil {
+			log.Error("write error err %v", err)
+			return
+		}
+		// 先读出流中的head部分
+		headData := make([]byte, dp.GetHeadLen())
+		_, err = io.ReadFull(conn, headData)
+		if err != nil {
+			log.Error("read head error")
+			break
+		}
+		// 将headData字节流拆包到msg中
+		msgHead, err := dp.UnPack(headData)
+		if err != nil {
+			log.Error("Unpack err %v", err)
+			return
+		}
+		if msgHead.GetDataLen() > 0 {
+			// msg 是有data数据的，需要再次读取data数据
+			msg := msgHead.(*znet.Message)
+			msg.Data = make([]byte, msgHead.GetDataLen())
+			// 根据datalen 从io中读取字节流
+			_, err = io.ReadFull(conn, msg.Data)
+			if err != nil{
+				log.Error("server unpack data err %v", err)
+				return
+			}
+			log.Debug("===> Recv Msg: ID=%d, len=%d, data=%s", msg.GetMsgId(), msg.GetDataLen(), string(msg.GetData()))
+		}
 		time.Sleep(1*time.Second)
 	}
+
 }

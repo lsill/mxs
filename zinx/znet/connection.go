@@ -1,9 +1,12 @@
 package znet
 
+import "C"
 import (
+	"errors"
+	"io"
 	"net"
-	"zinx/ziface"
 	"zinx/log"
+	"zinx/ziface"
 )
 
 type Connection struct {
@@ -37,19 +40,43 @@ func (c *Connection) StartReader() {
 	defer log.Debug("%s conn reader exit!",c.RemoteAddr().String())
 	defer c.Stop()
 	for {
-		// 读取我们最大的数据到buf中
-		buf := make([]byte, 512)
-		_, err := c.Conn.Read(buf)
-		if err != nil{
-			log.Error("recv buf err %v", err)
-			c.ExitBuffChan <- true
+		// 创建拆包解包的对象
+		dp := NewDataPack()
+
+		// 读取客户端的msg head
+		headData := make([]byte, dp.GetHeadLen())
+		if _, err := io.ReadFull(c.GetTCPConnection(), headData); err != nil{
+			log.Error("read msg head error!")
+			c.ExitBuffChan<-true
 			continue
 		}
+
+		// 拆包 得到msgid 和 datalen 放在msg中
+		msg , err := dp.UnPack(headData)
+		if err != nil {
+			log.Error("unpack error")
+			c.ExitBuffChan<-true
+			continue
+		}
+
+		// 根据datalen 读取data，放在msg.Data中
+		var data []byte
+		if msg.GetDataLen() > 0 {
+			data = make([]byte, msg.GetDataLen())
+			if _, err := io.ReadFull(c.GetTCPConnection(), data); err != nil {
+				log.Error("read msg data error:%v", err)
+				c.ExitBuffChan<-true
+				continue
+			}
+		}
+		msg.SetData(data)
+
 		// 得到当前客户端请求的Request数据
 		req := Request{
-			conn:c,
-			data:buf,
+			conn: c,
+			msg:  msg,
 		}
+
 		// 从路由Routers 中找到注册绑定Conn对应的Handle
 		go func (request ziface.IRequest) {
 			// 执行注册的路由方法
@@ -101,4 +128,28 @@ func (c *Connection) GetConnID() uint32{
 
 func (c *Connection) GetTCPConnection() *net.TCPConn {
 	return c.Conn
+}
+
+// 直接将Message数据发送数据给远程的TCP客户端
+func (c *Connection) SendMsg(msgId uint32, data []byte) error {
+	if c.isClosed == true {
+		return errors.New("Connection closed when send msg")
+	}
+
+	// 将data封包，并且发送
+	dp := NewDataPack()
+	msg , err := dp.Pack(NewMsgPackage(msgId, data))
+	if err != nil {
+		log.Error("Pack error msg id = %d", msgId)
+		return errors.New("Pack error msg")
+	}
+
+	// 写回客户端
+	if _, err := c.Conn.Write(msg); err != nil {
+		log.Error("Write msg id:%d error", msgId)
+		c.ExitBuffChan<- true
+		return errors.New("conn Write error")
+	}
+
+	return nil
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net"
 	"time"
+	"zinx/utils"
 	"zinx/ziface"
 	"zinx/log"
 )
@@ -28,7 +29,9 @@ type Server struct {
 
 // 开启网络服务
 func (s *Server) Start() {
-	log.Debug("[Start] Server listenner at IP:%v, port is %d, is starting", s.IP, s.Port)
+	log.Release("[Start] Server listenner at IP:%v, port is %d, is starting", s.IP, s.Port)
+	log.Release("[Zinx] Version:%s, MaxConn:%d, MaxPacketsize: %d", utils.GlobalObject.Version, utils.GlobalObject.MaxConn,
+		utils.GlobalObject.MaxPacketSize)
 	go func() {
 		// 1.获取一个TCP的Addr
 		addr , err := net.ResolveTCPAddr(s.IPVersoion, fmt.Sprintf("%s:%d", s.IP,s.Port))
@@ -43,7 +46,7 @@ func (s *Server) Start() {
 			log.Warn("listen %v err %v", s.IPVersoion, err)
 		}
 		// 已经监听成功
-		log.Debug("start Zinx server %v succ, now listenning...", s.Name)
+		log.Release("start Zinx server %v succ, now listenning...", s.Name)
 
 		var cid uint32
 		cid = 0
@@ -70,7 +73,7 @@ func (s *Server) Start() {
 }
 
 func (s *Server) Stop() {
-	log.Debug("[Stop] Zinx server , name %v", s.Name)
+	log.Release("[Stop] Zinx server , name %v", s.Name)
 	// TODO Server.Stop() 将其他需要清理的连接信息或者其他信息 也要一并停止或者清理
 
 }
@@ -89,14 +92,16 @@ func (s *Server) Server() {
 
 func (s *Server) AddRouter(router ziface.IRouter) {
 	s.Router = router
+	log.Release("add Router succ!")
 }
 
 // 创建一个服务器句柄
-func NewServer(name string) ziface.IServer {
+func NewServer() ziface.IServer {
+	utils.GlobalObject.Reload()
 	s := &Server{
-		Name:       name,
+		Name:       utils.GlobalObject.Name,
 		IPVersoion: "tcp4",
-		IP:         "0.0.0.0",
+		IP:         utils.GlobalObject.Host,
 		Port:       7777,
 		Router: nil,
 	}
