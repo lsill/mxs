@@ -12,6 +12,7 @@ func main() {
 	log.Debug("Client Test...Start")
 	time.Sleep(time.Second*3)
 
+	//conn ,err := net.Dial("tcp", "123.56.63.227:7777")
 	conn ,err := net.Dial("tcp", "127.0.0.1:7777")
 	if err != nil {
 		log.Error("client dial err", err)

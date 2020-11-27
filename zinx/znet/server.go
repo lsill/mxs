@@ -30,8 +30,10 @@ type Server struct {
 // 开启网络服务
 func (s *Server) Start() {
 	log.Release("[Start] Server listenner at IP:%v, port is %d, is starting", s.IP, s.Port)
-	log.Release("[Zinx] Version:%s, MaxConn:%d, MaxPacketsize: %d", utils.GlobalObject.Version, utils.GlobalObject.MaxConn,
-		utils.GlobalObject.MaxPacketSize)
+	log.Release("[Zinx] Version:%s, MaxConn:%d, MaxPacketsize: %d", utils.GloUtil.Version, utils.GloUtil.MaxConn,
+		utils.GloUtil.MaxPacketSize)
+	// 0.启动worker工作池
+	s.msgHandler.StarWorkerPool()
 	go func() {
 		// 1.获取一个TCP的Addr
 		addr , err := net.ResolveTCPAddr(s.IPVersoion, fmt.Sprintf("%s:%d", s.IP,s.Port))
@@ -97,12 +99,10 @@ func (s *Server) AddRouter(msgid uint32, router ziface.IRouter) {
 
 // 创建一个服务器句柄
 func NewServer() ziface.IServer {
-	utils.GlobalObject.Reload()
-
 	s := &Server{
-		Name:       utils.GlobalObject.Name,
+		Name:       utils.GloUtil.Name,
 		IPVersoion: "tcp4",
-		IP:         utils.GlobalObject.Host,
+		IP:         utils.GloUtil.Host,
 		Port:       7777,
 		msgHandler: NewMsgHandle(), // msgHandler初始化
 	}

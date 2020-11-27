@@ -2,6 +2,9 @@
   "Name": "demo server",
   "Host": "127.0.0.1",
   "TcpPort": 7777,
-  "MaxConn": 3
+  "MaxConn": 12000,
+  "MaxPacketSize": 4096,
+  "Version": "zinx 0.8",
+  "MaxWorkerTaskLen": 10
 }
 

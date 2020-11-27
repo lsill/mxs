@@ -6,6 +6,7 @@ import (
 	"io"
 	"net"
 	"zinx/log"
+	"zinx/utils"
 	"zinx/ziface"
 )
 
@@ -79,12 +80,14 @@ func (c *Connection) StartReader() {
 			conn: c,
 			msg:  msg,
 		}
-
-		// 从路由Routers 中找到注册绑定Conn对应的Handle
-		go func (request ziface.IRequest) {
+		if utils.GloUtil.MaxWorkerTaskLen > 0{
+			// 已经启动工作池机制，将消息交给worker处理
+			c.MsgHandler.SendMsgToTaskQueue(&req)
+		} else {
+			// 从路由Routers 中找到注册绑定Conn对应的Handle
 			// 执行注册的路由方法
-			c.MsgHandler.DoMsgHandler(request)
-		}(&req)
+			go c.MsgHandler.DoMsgHandler(&req)
+		}
 	}
 }
 
