@@ -56,7 +56,7 @@ func (s *Server) Start() {
 			// 3.1 阻塞等待客户端的连接请求
 			conn, err := listener.AcceptTCP()
 			if err != nil {
-				log.Warn("Accept err", err)
+				log.Warn("Accept err %v", err)
 				continue
 			}
 			// 3.2 TODO Server.Start() 设置服务器最大连接控制，如果超过最大连接，那么关闭此新的连接
