@@ -51,8 +51,22 @@ func (this *HelloZinxRouter) Handle(request ziface.IRequest) {
 	}
 }
 
+func DoConnectionBegin(conn ziface.IConnection) {
+	log.Debug("DoConnectionBegin is Called...")
+	err := conn.SendMsg(2, []byte("DoConnection Begin..."))
+	if err != nil {
+		log.Error("err is %v", err)
+	}
+}
+
+func DoConnectrionLost(conn ziface.IConnection) {
+	log.Debug("DoConnectionLost is Called...")
+}
+
 func main() {
 	s := znet.NewServer()
+	s.SetOnConnStart(DoConnectionBegin)
+	s.SetOnConnStop(DoConnectrionLost)
 	s.AddRouter(0, &PingRouter{})
 	s.AddRouter(1, &HelloZinxRouter{})
 	s.Server()

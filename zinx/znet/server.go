@@ -23,6 +23,12 @@ type Server struct {
 	Port int
 	// 当前Server的消息管理模块，用来绑定msgid和对应管理方法
 	msgHandler ziface.IMsgHandle
+	// 当前Server的连接管理器
+	ConnMgr ziface.IConnManger
+	// 该Server的连接创建时hook函数
+	OnConnStart func(conn ziface.IConnection)
+	// 该Server的连接断开时的hook函数
+	OnConnStop func(conn ziface.IConnection)
 }
 
 // ==============实现 ziface.Iserver 里的全部接口方法 =============
@@ -62,10 +68,14 @@ func (s *Server) Start() {
 				continue
 			}
 			// 3.2 TODO Server.Start() 设置服务器最大连接控制，如果超过最大连接，那么关闭此新的连接
+			if s.ConnMgr.Len() >= utils.GloUtil.MaxConn {
+				conn.Close()
+				log.Warn("conn is full")
+				continue
+			}
 
 			// 3.3 TODO ServerStart() 处理该新链接请求的 业务 方法，此时应该有 handler 和 conn 是绑定的
-
-			dealConn := NewConnecion(conn, cid, s.msgHandler)
+			dealConn := NewConnecion(s,conn, cid, s.msgHandler)
 			cid++
 
 			// 3.4 启动当前连接的处理业务
@@ -77,7 +87,7 @@ func (s *Server) Start() {
 func (s *Server) Stop() {
 	log.Release("[Stop] Zinx server , name %v", s.Name)
 	// TODO Server.Stop() 将其他需要清理的连接信息或者其他信息 也要一并停止或者清理
-
+	s.GetConnMgr().ClearConn()
 }
 
 func (s *Server) Server() {
@@ -105,6 +115,7 @@ func NewServer() ziface.IServer {
 		IP:         utils.GloUtil.Host,
 		Port:       7777,
 		msgHandler: NewMsgHandle(), // msgHandler初始化
+		ConnMgr: NewConnManager(),
 	}
 	return s
 }
@@ -118,4 +129,35 @@ func CallBackToClient(conn *net.TCPConn, data []byte, cnt int) error {
 		return errors.New("CallBackToClient error")
 	}
 	return nil
+}
+
+// 得到连接管理
+func (s *Server) GetConnMgr() ziface.IConnManger {
+	return s.ConnMgr
+}
+
+// 设置该Server的连接创建时的HOOK函数
+func (s *Server) SetOnConnStart(hookfunc func(ziface.IConnection)) {
+	s.OnConnStart =hookfunc
+}
+
+// 设置该Server的连接断开时的hook函数
+func (s *Server) SetOnConnStop(hookfunc func(connection ziface.IConnection)) {
+	s.OnConnStop = hookfunc
+}
+
+// 调用连接OnConnStart hook函数
+func (s *Server) CallOnConnStart(conn ziface.IConnection) {
+	if s.OnConnStart != nil {
+		log.Debug("---> CallOnConnStart...")
+		s.OnConnStart(conn)
+	}
+}
+
+// 调用连接OnConnStop hook函数
+func (s *Server) CallOnConnStop(conn ziface.IConnection) {
+	if s.OnConnStop != nil {
+		log.Debug("---> CallOnConnStop")
+		s.OnConnStop(conn)
+	}
 }

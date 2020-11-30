@@ -11,6 +11,8 @@ import (
 )
 
 type Connection struct {
+	// tcp 服务
+	TcpServer ziface.IServer
 	// 当前连接的socket TCP套接字
 	Conn *net.TCPConn
 	// 当前连接的ID，可以称作为SessionID,ID全局唯一
@@ -23,18 +25,24 @@ type Connection struct {
 	MsgHandler ziface.IMsgHandle
 	// 无缓冲通道，用于读、写两个goroutine之间的消息通信
 	msgChan	chan []byte
+	// 有缓冲通道，用于读、写两个goroutine之间的消息通信
+	msgBuffChan chan[]byte
 }
 
 // 创建连接的方法
-func NewConnecion(conn *net.TCPConn, connId uint32, msgHandler ziface.IMsgHandle) *Connection {
+func NewConnecion(server ziface.IServer,conn *net.TCPConn, connId uint32, msgHandler ziface.IMsgHandle) *Connection {
 	c := &Connection{
+		TcpServer: server,	// 将隶属的server传递进来
 		Conn:         conn,
 		ConnID:       connId,
 		isClosed:     false,
 		ExitBuffChan: make(chan bool, 1),
 		MsgHandler: msgHandler,
 		msgChan: make(chan []byte),
+		msgBuffChan: make(chan []byte, utils.GloUtil.MaxMsgChanLen),
 	}
+	// 将新创建的Conn添加到连接管理中
+	c.TcpServer.GetConnMgr().Add(c) // 将当前心新创建的连接添加到ConnManager中
 	return  c
 }
 
@@ -99,12 +107,30 @@ func (c *Connection) StartWriter() {
 	defer log.Debug("conn Writer %v exit!", c.RemoteAddr())
 	for {
 		select {
-		case data:=<-c.msgChan:
-			// 有数据要写给客户端
-			if _, err := c.Conn.Write(data); err != nil {
-				log.Error("Send Data error %v, ConnWriter exit!")
-				return
-			}
+			case data, ok :=<-c.msgChan:
+				// 有数据要写给客户端
+				if ok {
+					if _, err := c.Conn.Write(data); err != nil {
+						log.Error("Send Data error %v, ConnWriter exit!")
+						return
+					}
+				} else {
+					log.Error("msgChan is Closed")
+					break
+				}
+
+			case data, ok := <-c.msgBuffChan:
+				if ok {
+					if _, err := c.Conn.Write(data); err != nil {
+						log.Error("Send Data error %v, ConnWriterBuff eixt!")
+						return
+					}
+				}else {
+					log.Error("msgBuffChan is Closed")
+					break
+				}
+
+
 			case <- c.ExitBuffChan:
 			// conn已经关闭
 				return
@@ -118,6 +144,10 @@ func (c *Connection) Start() {
 	go c.StartReader()
 	// 2.开启写回客户端数据流程的goroutine
 	go c.StartWriter()
+
+	// 按照传进来创建连接时需要处理的业务，执行钩子方法
+	c.TcpServer.CallOnConnStart(c)
+
 	for {
 		select {
 		case <- c.ExitBuffChan:
@@ -139,15 +169,20 @@ func (c *Connection) Stop() {
 	}
 	c.isClosed = true
 	// TODO Connection Stop() 如果用户注册了该连接的关闭回调业务，那么此刻应该显示调用
+	c.TcpServer.CallOnConnStop(c)
+
 
 	// 关闭socket连接
 	c.Conn.Close()
 
 	// 通知从缓冲队列读取数据的业务，该连接已经关闭
 	c.ExitBuffChan <- true
-
+	// 将连接从连接管理器中删除
+	c.TcpServer.GetConnMgr().Remove(c)
 	// 关闭该连接的全部管道
 	close(c.ExitBuffChan)
+	close(c.msgBuffChan)
+	close(c.msgChan)
 }
 
 // 获取当前连接id
@@ -179,3 +214,19 @@ func (c *Connection) SendMsg(msgId uint32, data []byte) error {
 	return nil
 }
 
+
+func (c *Connection) SendBuffMsg(msgId uint32, data []byte) error {
+	if c.isClosed == true {
+		return errors.New("Connection closed when send msg")
+	}
+
+	// 将data封包，并且发送
+	dp := NewDataPack()
+	msg ,err := dp.Pack(NewMsgPackage(msgId, data))
+	if err != nil {
+		log.Error("buff Pack error msg id = %d", msgId)
+		return errors.New("buff Pack error msg")
+	}
+	c.msgBuffChan <- msg 	// 写回客户端
+	return nil
+}

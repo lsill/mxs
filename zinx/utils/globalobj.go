@@ -22,6 +22,8 @@ type GloBalObj struct {
 	Version		string 			// 服务器当前版本
 	MaxWorkerTaskLen uint32		// 当前工作worker池的数量 如果为0的话就不开启工作池机制
 
+	MaxMsgChanLen uint32		// 最大缓冲通道长度
+
 	ConFilePath string		// 配置文件路径
 }
 
@@ -54,6 +56,7 @@ func init() {
 		MaxConn:     12000,
 		Version: "zinx 0.4",
 		MaxWorkerTaskLen:100,
+		MaxMsgChanLen:1000,
 	}
 	// 从配置文件中加载一些配置参数
 	GloUtil.Reload()
