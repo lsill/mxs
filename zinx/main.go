@@ -53,20 +53,33 @@ func (this *HelloZinxRouter) Handle(request ziface.IRequest) {
 
 func DoConnectionBegin(conn ziface.IConnection) {
 	log.Debug("DoConnectionBegin is Called...")
+	conn.SetProperty("Name", "Lsill")
+	conn.SetProperty("Home", "https://www.baidu.com/")
 	err := conn.SendMsg(2, []byte("DoConnection Begin..."))
 	if err != nil {
 		log.Error("err is %v", err)
 	}
 }
 
-func DoConnectrionLost(conn ziface.IConnection) {
+func DoConnectionLost(conn ziface.IConnection) {
+	log.Debug("DoConnectionLost is Called...")
+	if name, err := conn.GetProperty("Name"); err == nil {
+		log.Debug("Conn property name is %s", name.(string))
+	} else {
+		log.Error("GetProperty name err is %v", err)
+	}
+	if home, err := conn.GetProperty("Home"); err == nil {
+		log.Debug("Conn property Home is %v", home.(string))
+	} else {
+		log.Error("GetProperty home err is %v", err)
+	}
 	log.Debug("DoConnectionLost is Called...")
 }
 
 func main() {
 	s := znet.NewServer()
 	s.SetOnConnStart(DoConnectionBegin)
-	s.SetOnConnStop(DoConnectrionLost)
+	s.SetOnConnStop(DoConnectionLost)
 	s.AddRouter(0, &PingRouter{})
 	s.AddRouter(1, &HelloZinxRouter{})
 	s.Server()

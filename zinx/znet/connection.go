@@ -5,6 +5,7 @@ import (
 	"errors"
 	"io"
 	"net"
+	"sync"
 	"zinx/log"
 	"zinx/utils"
 	"zinx/ziface"
@@ -27,6 +28,11 @@ type Connection struct {
 	msgChan	chan []byte
 	// 有缓冲通道，用于读、写两个goroutine之间的消息通信
 	msgBuffChan chan[]byte
+
+	// 连接属性
+	property map[string]interface{}
+	//保护连接属性修改的锁
+	propertyLock sync.RWMutex
 }
 
 // 创建连接的方法
@@ -40,6 +46,7 @@ func NewConnecion(server ziface.IServer,conn *net.TCPConn, connId uint32, msgHan
 		MsgHandler: msgHandler,
 		msgChan: make(chan []byte),
 		msgBuffChan: make(chan []byte, utils.GloUtil.MaxMsgChanLen),
+		property: make(map[string]interface{}), // 初始化连接属性map
 	}
 	// 将新创建的Conn添加到连接管理中
 	c.TcpServer.GetConnMgr().Add(c) // 将当前心新创建的连接添加到ConnManager中
@@ -48,7 +55,7 @@ func NewConnecion(server ziface.IServer,conn *net.TCPConn, connId uint32, msgHan
 
 // 处理conn读数据的Goroutine
 func (c *Connection) StartReader() {
-	log.Debug("Reader Goroutine is running")
+	log.Debug("Reader %v is running", c.RemoteAddr())
 	defer log.Debug("%s conn reader exit!",c.RemoteAddr().String())
 	defer c.Stop()
 	for {
@@ -60,7 +67,7 @@ func (c *Connection) StartReader() {
 		if _, err := io.ReadFull(c.GetTCPConnection(), headData); err != nil{
 			log.Error("read msg head error!")
 			c.ExitBuffChan<-true
-			continue
+			break
 		}
 
 		// 拆包 得到msgid 和 datalen 放在msg中
@@ -68,7 +75,7 @@ func (c *Connection) StartReader() {
 		if err != nil {
 			log.Error("unpack error")
 			c.ExitBuffChan<-true
-			continue
+			break
 		}
 
 		// 根据datalen 读取data，放在msg.Data中
@@ -105,6 +112,7 @@ func (c *Connection) StartReader() {
 func (c *Connection) StartWriter() {
 	log.Debug("Writer %v is running", c.RemoteAddr())
 	defer log.Debug("conn Writer %v exit!", c.RemoteAddr())
+	//defer c.Stop()
 	for {
 		select {
 			case data, ok :=<-c.msgChan:
@@ -169,6 +177,7 @@ func (c *Connection) Stop() {
 	}
 	c.isClosed = true
 	// TODO Connection Stop() 如果用户注册了该连接的关闭回调业务，那么此刻应该显示调用
+	log.Debug("conn stop callonconnstop")
 	c.TcpServer.CallOnConnStop(c)
 
 
@@ -229,4 +238,29 @@ func (c *Connection) SendBuffMsg(msgId uint32, data []byte) error {
 	}
 	c.msgBuffChan <- msg 	// 写回客户端
 	return nil
+}
+
+// 设置连接属性
+func (c *Connection)SetProperty(key string, value interface{}) {
+	c.propertyLock.Lock()
+	defer c.propertyLock.Unlock()
+	c.property[key] = value
+}
+
+// 获取链接属性
+func (c *Connection)GetProperty(key string) (interface{}, error) {
+	c.propertyLock.Lock()
+	defer c.propertyLock.Unlock()
+	if value, ok := c.property[key]; ok {
+		return value, nil
+	} else {
+		return nil, errors.New(key + " property not found")
+	}
+}
+
+// 删除链接属性
+func (c *Connection) RemoveProperty(key string) {
+	c.propertyLock.Lock()
+	defer c.propertyLock.Unlock()
+	delete(c.property, key)
 }
