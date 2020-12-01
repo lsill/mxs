@@ -84,7 +84,6 @@ func (c *Connection) StartReader() {
 			data = make([]byte, msg.GetDataLen())
 			if _, err := io.ReadFull(c.GetTCPConnection(), data); err != nil {
 				log.Error("read msg data error:%v", err)
-				c.ExitBuffChan<-true
 				continue
 			}
 		}
