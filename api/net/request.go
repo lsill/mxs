@@ -1,14 +1,14 @@
-package znet
+package net
 
-import "webV/zinx/ziface"
+import "mxs/api/iface"
 
 type Request struct {
-	conn ziface.IConnection		// 已经和客户端建立好的 链接
-	msg ziface.IMessage		// 客户端请求的数据
+	conn iface.IConnection // 已经和客户端建立好的 链接
+	msg  iface.IMessage    // 客户端请求的数据
 }
 
 // 获取请求链接信息
-func (r *Request) GetConnection() ziface.IConnection {
+func (r *Request) GetConnection() iface.IConnection {
 	return r.conn
 }
 

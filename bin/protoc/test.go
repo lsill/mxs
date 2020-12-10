@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/golang/protobuf/proto"
-	"webV/bin/protoc/sample"
-	"webV/log"
+	"mxs/bin/protoc/sample"
+	"mxs/log"
 )
 
 func main() {

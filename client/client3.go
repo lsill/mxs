@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 	"time"
-	"mx/log"
+	"mxs/log"
 )
 
 func main() {

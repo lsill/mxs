@@ -1,13 +1,13 @@
-package znet
+package net
 
 import (
 	"errors"
 	"fmt"
+	"mxs/api/iface"
+	"mxs/log"
+	"mxs/utils"
 	"net"
 	"time"
-	"webV/log"
-	"webV/zinx/utils"
-	"webV/zinx/ziface"
 )
 
 // iServer 接口实现，定义一个Server服务类
@@ -22,16 +22,16 @@ type Server struct {
 	// 服务端绑定的端口号
 	Port int
 	// 当前Server的消息管理模块，用来绑定msgid和对应管理方法
-	msgHandler ziface.IMsgHandle
+	msgHandler iface.IMsgHandle
 	// 当前Server的连接管理器
-	ConnMgr ziface.IConnManger
+	ConnMgr iface.IConnManger
 	// 该Server的连接创建时hook函数
-	OnConnStart func(conn ziface.IConnection)
+	OnConnStart func(conn iface.IConnection)
 	// 该Server的连接断开时的hook函数
-	OnConnStop func(conn ziface.IConnection)
+	OnConnStop func(conn iface.IConnection)
 }
 
-// ==============实现 ziface.Iserver 里的全部接口方法 =============
+// ==============实现 iface.Iserver 里的全部接口方法 =============
 
 // 开启网络服务
 func (s *Server) Start() {
@@ -102,20 +102,20 @@ func (s *Server) Server() {
 	}
 }
 
-func (s *Server) AddRouter(msgid uint32, router ziface.IRouter) {
+func (s *Server) AddRouter(msgid uint32, router iface.IRouter) {
 	s.msgHandler.AddRouter(msgid, router)
 	log.Release("add Router succ!")
 }
 
 // 创建一个服务器句柄
-func NewServer() ziface.IServer {
+func NewServer() iface.IServer {
 	s := &Server{
 		Name:       utils.GloUtil.Name,
 		IPVersoion: "tcp4",
 		IP:         utils.GloUtil.Host,
 		Port:       7777,
 		msgHandler: NewMsgHandle(), // msgHandler初始化
-		ConnMgr: NewConnManager(),
+		ConnMgr:    NewConnManager(),
 	}
 	return s
 }
@@ -132,22 +132,22 @@ func CallBackToClient(conn *net.TCPConn, data []byte, cnt int) error {
 }
 
 // 得到连接管理
-func (s *Server) GetConnMgr() ziface.IConnManger {
+func (s *Server) GetConnMgr() iface.IConnManger {
 	return s.ConnMgr
 }
 
 // 设置该Server的连接创建时的HOOK函数
-func (s *Server) SetOnConnStart(hookfunc func(ziface.IConnection)) {
+func (s *Server) SetOnConnStart(hookfunc func(iface.IConnection)) {
 	s.OnConnStart =hookfunc
 }
 
 // 设置该Server的连接断开时的hook函数
-func (s *Server) SetOnConnStop(hookfunc func(connection ziface.IConnection)) {
+func (s *Server) SetOnConnStop(hookfunc func(connection iface.IConnection)) {
 	s.OnConnStop = hookfunc
 }
 
 // 调用连接OnConnStart hook函数
-func (s *Server) CallOnConnStart(conn ziface.IConnection) {
+func (s *Server) CallOnConnStart(conn iface.IConnection) {
 	if s.OnConnStart != nil {
 		log.Debug("---> CallOnConnStart...")
 		s.OnConnStart(conn)
@@ -155,7 +155,7 @@ func (s *Server) CallOnConnStart(conn ziface.IConnection) {
 }
 
 // 调用连接OnConnStop hook函数
-func (s *Server) CallOnConnStop(conn ziface.IConnection) {
+func (s *Server) CallOnConnStop(conn iface.IConnection) {
 	if s.OnConnStop != nil {
 		log.Debug("---> CallOnConnStop")
 		s.OnConnStop(conn)

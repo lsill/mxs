@@ -1,19 +1,19 @@
-package znet
+package net
 
 import "C"
 import (
 	"errors"
 	"io"
+	"mxs/api/iface"
+	"mxs/log"
+	"mxs/utils"
 	"net"
 	"sync"
-	"webV/log"
-	"webV/zinx/utils"
-	"webV/zinx/ziface"
 )
 
 type Connection struct {
 	// tcp 服务
-	TcpServer ziface.IServer
+	TcpServer iface.IServer
 	// 当前连接的socket TCP套接字
 	Conn *net.TCPConn
 	// 当前连接的ID，可以称作为SessionID,ID全局唯一
@@ -23,7 +23,7 @@ type Connection struct {
 	// 告知该连接已经退出/停止的channel
 	ExitBuffChan chan bool
 	// 消息管理MsgId和对应处理方法的消息管理模块
-	MsgHandler ziface.IMsgHandle
+	MsgHandler iface.IMsgHandle
 	// 无缓冲通道，用于读、写两个goroutine之间的消息通信
 	msgChan	chan []byte
 	// 有缓冲通道，用于读、写两个goroutine之间的消息通信
@@ -36,7 +36,7 @@ type Connection struct {
 }
 
 // 创建连接的方法
-func NewConnecion(server ziface.IServer,conn *net.TCPConn, connId uint32, msgHandler ziface.IMsgHandle) *Connection {
+func NewConnecion(server iface.IServer,conn *net.TCPConn, connId uint32, msgHandler iface.IMsgHandle) *Connection {
 	c := &Connection{
 		TcpServer: server,	// 将隶属的server传递进来
 		Conn:         conn,

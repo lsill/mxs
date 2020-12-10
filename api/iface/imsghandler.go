@@ -1,4 +1,4 @@
-package ziface
+package iface
 
 /*
 	消息管理抽象层

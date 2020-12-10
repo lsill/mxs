@@ -1,9 +1,9 @@
-package znet
+package net
 
 import (
-	"webV/log"
-	"webV/zinx/utils"
-	"webV/zinx/ziface"
+	"mxs/api/iface"
+	"mxs/log"
+	"mxs/utils"
 )
 
 /*
@@ -11,22 +11,22 @@ import (
 	TaskQueue:是一个Request请求信息的channel集合。用来缓冲提供worker调用的Request请求信息，worker会从对应的队列中获取客户端的请求数据并且处理掉。
  */
 type MsgHandle struct {
-	Apis map[uint32] ziface.IRouter	// 存放每个MsgId 所对应的处理方法的map属性
-	WorkerPoolSize uint32			// 业务工作worker池的数量
-	TaskQueue	[]chan ziface.IRequest	// Worker负责取任务的消息队列
+	Apis map[uint32] iface.IRouter     // 存放每个MsgId 所对应的处理方法的map属性
+	WorkerPoolSize uint32              // 业务工作worker池的数量
+	TaskQueue	[]chan iface.IRequest // Worker负责取任务的消息队列
 }
 
 func NewMsgHandle() *MsgHandle {
 	return &MsgHandle{
-		Apis: make(map[uint32]ziface.IRouter),
+		Apis:           make(map[uint32]iface.IRouter),
 		WorkerPoolSize: utils.GloUtil.MaxWorkerTaskLen,
 		// 一个worker对应一个queue
-		TaskQueue: make([]chan ziface.IRequest,utils.GloUtil.MaxWorkerTaskLen),
+		TaskQueue: make([]chan iface.IRequest, utils.GloUtil.MaxWorkerTaskLen),
 	}
 }
 
 // 马上以非阻塞方式处理消息
-func (mh *MsgHandle) DoMsgHandler(request ziface.IRequest) {
+func (mh *MsgHandle) DoMsgHandler(request iface.IRequest) {
 	handler, ok := mh.Apis[request.GetMsgID()]
 	if !ok {
 		log.Error("api msgId %d is not fount", request.GetMsgID())
@@ -40,7 +40,7 @@ func (mh *MsgHandle) DoMsgHandler(request ziface.IRequest) {
 }
 
 // 为消息添加具体的处理逻辑
-func (mh *MsgHandle) AddRouter(msgId uint32, router ziface.IRouter) {
+func (mh *MsgHandle) AddRouter(msgId uint32, router iface.IRouter) {
 	// 1. 判断当前msg绑定的api处理方法是否已经存在
 	if _, ok := mh.Apis[msgId]; ok {
 		panic("repeated api, msgid is " + string(msgId))
@@ -51,7 +51,7 @@ func (mh *MsgHandle) AddRouter(msgId uint32, router ziface.IRouter) {
 }
 
 // 启动一个worker工作流程
-func(mh *MsgHandle) StarOneWorker(workerid int, taskQueue chan ziface.IRequest) {
+func(mh *MsgHandle) StarOneWorker(workerid int, taskQueue chan iface.IRequest) {
 	log.Debug("workerid %d is started",workerid)
 	for {
 		select {
@@ -68,7 +68,7 @@ func (mh *MsgHandle) StarWorkerPool() {
 	for i := 0; i < int(mh.WorkerPoolSize); i++ {
 		// 一个worker被启动
 		// 给当前worker对应的任务队列开辟空间
-		mh.TaskQueue[i] = make(chan ziface.IRequest, utils.GloUtil.MaxWorkerTaskLen)
+		mh.TaskQueue[i] = make(chan iface.IRequest, utils.GloUtil.MaxWorkerTaskLen)
 		// 启动当前worker,阻塞等待对应的任务队列是否有消息传递进来
 		go mh.StarOneWorker(i, mh.TaskQueue[i])
 	}
@@ -82,7 +82,7 @@ func (mh *MsgHandle) StarWorkerPool() {
  */
 
 // 将消息交给taskQueue，由worker进行处理
-func (mh *MsgHandle) SendMsgToTaskQueue(request ziface.IRequest) {
+func (mh *MsgHandle) SendMsgToTaskQueue(request iface.IRequest) {
 	// 根据ConnID来分配当前的连接由哪个worker负责处理
 	// 轮询的平均分配法则
 

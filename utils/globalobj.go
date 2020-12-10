@@ -3,19 +3,19 @@ package utils
 import (
 	"encoding/json"
 	"io/ioutil"
-	"webV/zinx/ziface"
+	"mxs/api/iface"
 )
 
 /*
 	存储一切关Zinx框架的全局参数，供其他模块使用一些参数也可以通过
-	用户根据 zinx.json来配置
+	用户根据 api.json来配置
  */
 
 type GloBalObj struct {
-	TcpServer ziface.IServer	// 当前Zinx的全局Server对象
-	Host string					// 当前服务器主机IP
-	TcpPort int					// 当前服务器主机监听端口号
-	Name string					// 当前服务器名称
+	TcpServer iface.IServer // 当前Zinx的全局Server对象
+	Host      string        // 当前服务器主机IP
+	TcpPort   int           // 当前服务器主机监听端口号
+	Name      string        // 当前服务器名称
 
 	MaxPacketSize uint32			// 都需数据包的最大值
 	MaxConn		int				// 当前服务器主机允许的最大链接个数
@@ -34,7 +34,7 @@ var GloUtil *GloBalObj
 
 // 读取用户配置文件
 func (g *GloBalObj) Reload() {
-	data ,err := ioutil.ReadFile("conf/zinx.json")
+	data ,err := ioutil.ReadFile("conf/api.json")
 	if err != nil {
 		panic(err)
 	}
@@ -54,7 +54,7 @@ func init() {
 		Name:        "ZinxServerApp",
 		MaxPacketSize: 0,
 		MaxConn:     12000,
-		Version: "zinx 0.4",
+		Version: "api 0.4",
 		MaxWorkerTaskLen:100,
 		MaxMsgChanLen:1000,
 	}

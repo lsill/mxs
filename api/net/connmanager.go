@@ -1,18 +1,18 @@
-package znet
+package net
 
 import (
 	"errors"
 	"sync"
-	"webV/log"
-	"webV/zinx/ziface"
+	"mxs/log"
+	"mxs/api/iface"
 )
 
 /*
 	链接管理模块
  */
 type ConnManager struct {
-	connections map[uint32]ziface.IConnection //管理的链接信息
-	connLock	sync.RWMutex	// 读写链接的读写锁
+	connections map[uint32]iface.IConnection //管理的链接信息
+	connLock	sync.RWMutex                 // 读写链接的读写锁
 }
 
 /*
@@ -20,12 +20,12 @@ type ConnManager struct {
  */
 func NewConnManager() *ConnManager {
 	return &ConnManager{
-		connections: make(map[uint32]ziface.IConnection),
+		connections: make(map[uint32]iface.IConnection),
 	}
 }
 
 // 添加链接
-func (cmg *ConnManager) Add(conn ziface.IConnection) {
+func (cmg *ConnManager) Add(conn iface.IConnection) {
 	// 保护共享资源map，加写锁
 	cmg.connLock.Lock()
 	defer cmg.connLock.Unlock()
@@ -37,7 +37,7 @@ func (cmg *ConnManager) Add(conn ziface.IConnection) {
 }
 
 // 删除链接
-func (cmg *ConnManager) Remove(conn ziface.IConnection) {
+func (cmg *ConnManager) Remove(conn iface.IConnection) {
 	cmg.connLock.Lock()
 	defer cmg.connLock.Unlock()
 	// 删除链接信息
@@ -51,7 +51,7 @@ func (cmg *ConnManager) Len() int {
 }
 
 // 通过ConnID获取链接
-func (cmg *ConnManager) Get(connid uint32) (ziface.IConnection,error){
+func (cmg *ConnManager) Get(connid uint32) (iface.IConnection,error){
 	// 保护共享资源map，加读锁
 	cmg.connLock.Lock()
 	defer cmg.connLock.Unlock()

@@ -2,7 +2,7 @@ package core
 
 import (
 	"fmt"
-	"webV/log"
+	"mxs/log"
 )
 
 /*

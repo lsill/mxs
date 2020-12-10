@@ -3,8 +3,8 @@ package main
 import (
 	"io"
 	"net"
-	"mx/log"
-	"mx/zinx/znet"
+	"mxs/log"
+	"mxs/api/net"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 			log.Error("server accept err:%v", err)
 		}
 		go func (conn net.Conn) {
-			dp := znet.NewDataPack()
+			dp := net.NewDataPack()
 			for {
 				// 1 先读出流中的head部分
 				headData := make([]byte, dp.GetHeadLen())
@@ -35,7 +35,7 @@ func main() {
 				}
 				if msgHead.GetDataLen() > 0 {
 					// msg 是有data数据的，需要再次读取data数据
-					msg := msgHead.(*znet.Message)
+					msg := msgHead.(*net.Message)
 					msg.Data = make([]byte,msgHead.GetDataLen())
 
 					// 根据dataLen从io从读取字节流

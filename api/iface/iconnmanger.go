@@ -1,4 +1,4 @@
-package ziface
+package iface
 
 /*
 	连接管理抽象层

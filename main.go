@@ -1,17 +1,17 @@
 package main
 
 import (
-	"webV/log"
-	"webV/zinx/ziface"
-	"webV/zinx/znet"
+	"mxs/log"
+	"mxs/api/iface"
+	"mxs/api/net"
 )
 
 type PingRouter struct {
-	znet.BaseRouter	// 一定要先基础BaseRouter
+	net.BaseRouter // 一定要先基础BaseRouter
 }
 
 // Test PreHandle
-/*func (this *PingRouter) PreHandle(request ziface.IRequest){
+/*func (this *PingRouter) PreHandle(request iface.IRequest){
 	log.Debug("Call Router PreHandle")
 	_, err := request.GetConnection().GetTCPConnection().Write([]byte("before ping....\n"))
 	if err != nil {
@@ -20,7 +20,7 @@ type PingRouter struct {
 }*/
 
 // TestHandle
-func (this *PingRouter) Handle(request ziface.IRequest) {
+func (this *PingRouter) Handle(request iface.IRequest) {
 	log.Debug("Call PingRouter Handle")
 	log.Debug("recv from client,msgid:%d, data=%s", request.GetMsgID(), string(request.GetData()))
 	err := request.GetConnection().SendMsg(0, []byte("ping...ping...ping..."))
@@ -30,7 +30,7 @@ func (this *PingRouter) Handle(request ziface.IRequest) {
 }
 
 // TestPostHandle
-/*func (this *PingRouter) PostHandle(request ziface.IRequest) {
+/*func (this *PingRouter) PostHandle(request iface.IRequest) {
 	log.Debug("Call Router PostHandle")
 	_, err := request.GetConnection().GetTCPConnection().Write([]byte("After ping....\n"))
 	if err != nil {
@@ -39,10 +39,10 @@ func (this *PingRouter) Handle(request ziface.IRequest) {
 }*/
 
 type HelloZinxRouter struct {
-	znet.BaseRouter
+	net.BaseRouter
 }
 
-func (this *HelloZinxRouter) Handle(request ziface.IRequest) {
+func (this *HelloZinxRouter) Handle(request iface.IRequest) {
 	log.Debug("Call HelloZinxRouter Handle")
 	log.Debug("recv from client,msgid:%d, data=%s", request.GetMsgID(), string(request.GetData()))
 	err := request.GetConnection().SendMsg(1, []byte("hello Zinx Router 0.6"))
@@ -51,7 +51,7 @@ func (this *HelloZinxRouter) Handle(request ziface.IRequest) {
 	}
 }
 
-func DoConnectionBegin(conn ziface.IConnection) {
+func DoConnectionBegin(conn iface.IConnection) {
 	log.Debug("DoConnectionBegin is Called...")
 	conn.SetProperty("Name", "Lsill")
 	conn.SetProperty("Home", "https://www.baidu.com/")
@@ -61,7 +61,7 @@ func DoConnectionBegin(conn ziface.IConnection) {
 	}
 }
 
-func DoConnectionLost(conn ziface.IConnection) {
+func DoConnectionLost(conn iface.IConnection) {
 	log.Debug("DoConnectionLost is Called...")
 	if name, err := conn.GetProperty("Name"); err == nil {
 		log.Debug("Conn property name is %s", name.(string))
@@ -77,7 +77,7 @@ func DoConnectionLost(conn ziface.IConnection) {
 }
 
 func main() {
-	s := znet.NewServer()
+	s := net.NewServer()
 	s.SetOnConnStart(DoConnectionBegin)
 	s.SetOnConnStop(DoConnectionLost)
 	s.AddRouter(0, &PingRouter{})

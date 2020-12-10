@@ -1,4 +1,4 @@
-package znet
+package net
 
 import (
 	"fmt"

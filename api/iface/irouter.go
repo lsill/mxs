@@ -1,4 +1,4 @@
-package ziface
+package iface
 
 /*
 	路由接口， 这里面路由是 使用框架者给链接自定的 处理业务方法

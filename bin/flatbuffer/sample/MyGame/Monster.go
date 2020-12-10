@@ -3,7 +3,7 @@
 package MyGame
 
 import (
-	flatbuffers "webV/bin/flatbuffer/flatbuffers"
+	flatbuffers "mxs/game/bin/flatbuffer/flatbuffers"
 )
 
 /// 注释
