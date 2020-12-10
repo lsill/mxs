@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 	"time"
-	"zinx/log"
+	"webV/log"
 )
 
 func main() {

@@ -1,9 +1,9 @@
 package znet
 
 import (
-	"zinx/log"
-	"zinx/utils"
-	"zinx/ziface"
+	"webV/log"
+	"webV/zinx/utils"
+	"webV/zinx/ziface"
 )
 
 /*

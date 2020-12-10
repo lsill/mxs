@@ -1,3 +1,3 @@
-module zinx
+module webV
 
 go 1.15

@@ -3,8 +3,8 @@ package znet
 import (
 	"errors"
 	"sync"
-	"zinx/log"
-	"zinx/ziface"
+	"webV/log"
+	"webV/zinx/ziface"
 )
 
 /*
