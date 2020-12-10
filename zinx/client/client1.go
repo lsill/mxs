@@ -4,8 +4,8 @@ import (
 	"io"
 	"net"
 	"time"
-	"webV/log"
-	"webV/zinx/znet"
+	"mx/log"
+	"mx/zinx/znet"
 )
 
 func main() {

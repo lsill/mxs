@@ -3,8 +3,8 @@ package main
 import (
 	"io"
 	"net"
-	"webV/log"
-	"webV/zinx/znet"
+	"mx/log"
+	"mx/zinx/znet"
 )
 
 func main() {
