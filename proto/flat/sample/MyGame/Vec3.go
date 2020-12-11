@@ -3,7 +3,7 @@
 package MyGame
 
 import (
-	flatbuffers "mxs/game/bin/flatbuffer/flatbuffers"
+	flatbuffers "mxs/game/bin/flat/flatbuffers"
 )
 
 type Vec3 struct {

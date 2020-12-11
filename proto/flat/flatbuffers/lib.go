@@ -1,6 +1,6 @@
 package flatbuffers
 
-// FlatBuffer is the interface that represents a flatbuffer.
+// FlatBuffer is the interface that represents a flat.
 type FlatBuffer interface {
 	Table() Table
 	Init(buf []byte, i UOffsetT)
@@ -19,7 +19,7 @@ func GetSizePrefixedRootAs(buf []byte, offset UOffsetT, fb FlatBuffer) {
 	fb.Init(buf, n+offset+sizePrefixLength)
 }
 
-// GetSizePrefix reads the size from a size-prefixed flatbuffer
+// GetSizePrefix reads the size from a size-prefixed flat
 func GetSizePrefix(buf []byte, offset UOffsetT) uint32 {
 	return GetUint32(buf[offset:])
 }

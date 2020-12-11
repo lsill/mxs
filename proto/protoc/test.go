@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/golang/protobuf/proto"
-	"mxs/bin/protoc/sample"
 	"mxs/log"
+	"mxs/proto/protoc/sample"
 )
 
 func main() {

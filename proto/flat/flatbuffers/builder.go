@@ -570,7 +570,7 @@ func (b *Builder) FinishWithFileIdentifier(rootTable UOffsetT, fid []byte) {
 	if fid == nil || len(fid) != fileIdentifierLength {
 		panic("incorrect file identifier length")
 	}
-	// In order to add a file identifier to the flatbuffer message, we need
+	// In order to add a file identifier to the flat message, we need
 	// to prepare an alignment and file identifier length
 	b.Prep(b.minalign, SizeInt32+fileIdentifierLength)
 	for i := fileIdentifierLength - 1; i >= 0; i-- {
@@ -595,7 +595,7 @@ func (b *Builder) FinishSizePrefixedWithFileIdentifier(rootTable UOffsetT, fid [
 	if fid == nil || len(fid) != fileIdentifierLength {
 		panic("incorrect file identifier length")
 	}
-	// In order to add a file identifier and size prefix to the flatbuffer message,
+	// In order to add a file identifier and size prefix to the flat message,
 	// we need to prepare an alignment, a size prefix length, and file identifier length
 	b.Prep(b.minalign, SizeInt32+fileIdentifierLength+sizePrefixLength)
 	for i := fileIdentifierLength - 1; i >= 0; i-- {

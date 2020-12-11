@@ -24,13 +24,13 @@ func (t *Table) Indirect(off UOffsetT) UOffsetT {
 	return off + GetUOffsetT(t.Bytes[off:])
 }
 
-// String gets a string from data stored inside the flatbuffer.
+// String gets a string from data stored inside the flat.
 func (t *Table) String(off UOffsetT) string {
 	b := t.ByteVector(off)
 	return byteSliceToString(b)
 }
 
-// ByteVector gets a byte slice from data stored inside the flatbuffer.
+// ByteVector gets a byte slice from data stored inside the flat.
 func (t *Table) ByteVector(off UOffsetT) []byte {
 	off += GetUOffsetT(t.Bytes[off:])
 	start := off + UOffsetT(SizeUOffsetT)

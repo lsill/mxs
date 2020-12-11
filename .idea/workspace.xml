@@ -58,11 +58,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/proto" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/game" />
       <recent name="$PROJECT_DIR$/bin/flatbuffer" />
       <recent name="$PROJECT_DIR$/bin" />
-      <recent name="$PROJECT_DIR$/bin/test/flatbuffer" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go (1)">
