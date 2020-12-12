@@ -5,14 +5,14 @@ import (
 	"net"
 	"time"
 	"mxs/log"
-	"mxs/api/net"
+	"mxs/api/mnet"
 )
 
 func main() {
 	log.Debug("Client Test...Start")
 	time.Sleep(time.Second*3)
 
-	//conn ,err := net.Dial("tcp", "123.56.63.227:7777")
+	//conn ,err := mnet.Dial("tcp", "123.56.63.227:7777")
 	conn ,err := net.Dial("tcp", "127.0.0.1:7777")
 	if err != nil {
 		log.Error("client dial err", err)
@@ -20,8 +20,8 @@ func main() {
 	}
 	for {
 		// 创建一个封包对象 dp
-		dp := net.NewDataPack()
-		msg, err := dp.Pack(net.NewMsgPackage(0, []byte("aaa  Zinx 0.6 Client Test Message")))
+		dp := mnet.NewDataPack()
+		msg, err := dp.Pack(mnet.NewMsgPackage(0, []byte("aaa  Zinx 0.6 Client Test Message")))
 		if err != nil {
 			log.Error(" pack msg error")
 			return
@@ -46,7 +46,7 @@ func main() {
 		}
 		if msgHead.GetDataLen() > 0 {
 			// msg 是有data数据的，需要再次读取data数据
-			msg := msgHead.(*net.Message)
+			msg := msgHead.(*mnet.Message)
 			msg.Data = make([]byte, msgHead.GetDataLen())
 			// 根据datalen 从io中读取字节流
 			_, err = io.ReadFull(conn, msg.Data)

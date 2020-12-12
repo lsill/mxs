@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/golang/protobuf/proto"
 	"mxs/log"
-	"mxs/proto/protoc/sample"
+	"mxs/mmo/proto/protoc/sample"
 )
 
 func main() {

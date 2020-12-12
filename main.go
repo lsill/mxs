@@ -1,13 +1,14 @@
 package main
 
 import (
-	"mxs/log"
 	"mxs/api/iface"
-	"mxs/api/net"
+	"mxs/api/mnet"
+	"mxs/log"
+	"mxs/mmo/core/entity"
 )
 
 type PingRouter struct {
-	net.BaseRouter // 一定要先基础BaseRouter
+	mnet.BaseRouter // 一定要先基础BaseRouter
 }
 
 // Test PreHandle
@@ -39,7 +40,7 @@ func (this *PingRouter) Handle(request iface.IRequest) {
 }*/
 
 type HelloZinxRouter struct {
-	net.BaseRouter
+	mnet.BaseRouter
 }
 
 func (this *HelloZinxRouter) Handle(request iface.IRequest) {
@@ -76,13 +77,17 @@ func DoConnectionLost(conn iface.IConnection) {
 	log.Debug("DoConnectionLost is Called...")
 }
 
-func main() {
-	s := net.NewServer()
-	s.SetOnConnStart(DoConnectionBegin)
-	s.SetOnConnStop(DoConnectionLost)
-	s.AddRouter(0, &PingRouter{})
-	s.AddRouter(1, &HelloZinxRouter{})
-	s.Server()
+// 当客户端建立链接的时候的hook函数
+func OnConnectionAdd(conn iface.IConnection) {
+	// 创建一个玩家
+	player := entity.NewPlayer(conn)
+	// 同步当前的entity给客户端，走Msgid：1 消息
+	player.SyncEntity()
+}
 
+func main() {
+	s := mnet.NewServer()
+	s.SetOnConnStart(OnConnectionAdd)
+	s.Server()
 }
 

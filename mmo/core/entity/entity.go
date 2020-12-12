@@ -1,9 +1,11 @@
-package core
+package entity
 
 import (
 	"math/rand"
 	"mxs/api/iface"
-	"mxs/proto/flat/flatbuffers"
+	"mxs/mmo/proto/flat/flatbuffers"
+	"mxs/mmo/proto/flat/sample/flatutil"
+	"mxs/mmo/proto/flat/sample/strupro"
 	"sync"
 )
 
@@ -69,4 +71,13 @@ func NewPlayer(conn iface.IConnection) *Player {
 
 func (p *Player) SendMsg(msgId uint32, data flatbuffers.FlatBuffer) {
 	p.conn.SendMsg(msgId, data.Table().Bytes)
+}
+
+// 告知客户端pid，同步已经生成的实体给客户端
+func (p *Player) SyncEntity() {
+	builder := flatutil.GetNewBuilder()
+	posbuilder := flatutil.GetNewBuilder()
+	pos := strupro.CreatePosition(posbuilder, p.X, p.Y, p.Z, p.V)
+	strupro.PosMessageAddEid(builder, p.Eid)
+	strupro.PosMessageAddPos(builder, pos)
 }

@@ -1,4 +1,4 @@
-package core
+package aoi
 
 import (
 	"fmt"
@@ -9,12 +9,12 @@ import (
 	AOI管理模块
  */
 type AOIManager struct {
-	MinX int // 区域左边界坐标
-	MaxX int // 区域右边界坐标
-	CntsX int // x方向格子的数量
-	MinY int // 区域上边界坐标
-	MaxY int // 区域下边界坐标
-	GntsY int // y方向的格子数量
+	MinX int            // 区域左边界坐标
+	MaxX int            // 区域右边界坐标
+	CntsX int           // x方向格子的数量
+	MinY int            // 区域上边界坐标
+	MaxY int            // 区域下边界坐标
+	GntsY int           // y方向的格子数量
 	grids map[int]*Grid // 当前区域都有那些格子，key：格子id，value：格子对象
 }
 

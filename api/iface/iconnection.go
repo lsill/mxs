@@ -27,4 +27,4 @@ type IConnection interface {
 }
 
 // 定义一个统一处理链接业务的接口
-//type HandFunc func(conn *net.TCPConn,bytes []byte,event int) error
+//type HandFunc func(conn *mnet.TCPConn,bytes []byte,event int) error

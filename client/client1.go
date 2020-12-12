@@ -5,7 +5,7 @@ import (
 	"net"
 	"time"
 	"mxs/log"
-	"mxs/api/net"
+	"mxs/api/mnet"
 )
 
 func main() {
@@ -19,8 +19,8 @@ func main() {
 	}
 	for {
 		// 创建一个封包对象 dp
-		dp := net.NewDataPack()
-		msg, err := dp.Pack(net.NewMsgPackage(1, []byte("Zinx 0.6 Client Test Message 222")))
+		dp := mnet.NewDataPack()
+		msg, err := dp.Pack(mnet.NewMsgPackage(1, []byte("Zinx 0.6 Client Test Message 222")))
 		if err != nil {
 			log.Error(" pack msg error")
 			return
@@ -45,7 +45,7 @@ func main() {
 		}
 		if msgHead.GetDataLen() > 0 {
 			// msg 是有data数据的，需要再次读取data数据
-			msg := msgHead.(*net.Message)
+			msg := msgHead.(*mnet.Message)
 			msg.Data = make([]byte, msgHead.GetDataLen())
 			// 根据datalen 从io中读取字节流
 			_, err = io.ReadFull(conn, msg.Data)

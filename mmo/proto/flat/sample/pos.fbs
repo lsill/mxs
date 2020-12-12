@@ -1,0 +1,19 @@
+namespace strupro;
+attribute "priority";
+
+struct Position {
+    x:float;
+    y:float;
+    z:float;
+    v:float;
+}
+
+/// PosMessage 位置信息
+table PosMessage {
+    pos:Position;
+    eid:int;
+    egen:int;
+    pid:int;
+}
+
+root_type PosMessage;

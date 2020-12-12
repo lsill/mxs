@@ -1,4 +1,4 @@
-package net
+package mnet
 
 type Message struct {
 	Id uint32	// 消息id
