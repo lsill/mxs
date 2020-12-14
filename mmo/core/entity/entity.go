@@ -2,10 +2,8 @@ package entity
 
 import (
 	"math/rand"
-	"mxs/api/iface"
-	"mxs/mmo/proto/flat/flatbuffers"
-	"mxs/mmo/proto/flat/sample/flatutil"
-	"mxs/mmo/proto/flat/sample/strupro"
+	"mxs/mmo/core/aoi"
+	"mxs/mmo/core/worldmanager"
 	"sync"
 )
 
@@ -17,14 +15,10 @@ type Entity struct {
 	Z float32	// 高度
 	V float32	// 旋转角度
 	W int32		// 重量
+	IsPlayer bool // 是否玩家
 }
 
-// 玩家
-type Player struct {
-	Entity
-	acid string
-	conn iface.IConnection
-}
+
 
 /*
 	entity 实体id生成器
@@ -49,35 +43,37 @@ func NewEntity() *Entity {
 	return en
 }
 
-// 创建一个玩家
-func NewPlayer(conn iface.IConnection) *Player {
-	IdLock.Lock()
-	id := EidGen
-	EidGen++
-	IdLock.Unlock()
-	p := &Player{
-		Entity: Entity{
-			Eid: id,
-			X:   float32(160 + rand.Intn(10)),
-			Y:   float32(134 + rand.Intn(17)),
-			Z:   0,
-			V:   0,
-		},
-		acid:   "",
-		conn: conn,
+
+// 得到当前实体所在格子的id
+func (en *Entity) GetGid() int{
+	return worldmanager.WorldMgrObj.AoiMgr.GetGIDByPos(en.X, en.Y)
+}
+
+// 得到当当前实体附近所有格子
+func (en *Entity) GetCurAllGirds() []*aoi.Grid {
+	return worldmanager.WorldMgrObj.AoiMgr.GetSurroundGridsByGid(en.GetGid())
+}
+
+// 得到当前实体附近所有实体
+func (en *Entity) GetCurAllEntitys() []*Entity {
+  	entitys := make([]*Entity, 0 , 1000)
+  	girds := en.GetCurAllGirds()
+  	for i := 0; i < len(girds); i++{
+  		entitys = append(entitys, girds[i].GetAllEntitys()...)
 	}
-	return p
+	return entitys
 }
 
-func (p *Player) SendMsg(msgId uint32, data flatbuffers.FlatBuffer) {
-	p.conn.SendMsg(msgId, data.Table().Bytes)
+// 得到当前角色附近所有玩家
+func (en *Entity) GetCurAllPlayers() []*Player {
+	entitys := make([]*Player, 0 , 1000)
+	girds := en.GetCurAllGirds()
+	for i := 0; i < len(girds); i++{
+		entitys = append(entitys, girds[i].GetAllPlayers()...)
+	}
+	return entitys
 }
 
-// 告知客户端pid，同步已经生成的实体给客户端
-func (p *Player) SyncEntity() {
-	builder := flatutil.GetNewBuilder()
-	posbuilder := flatutil.GetNewBuilder()
-	pos := strupro.CreatePosition(posbuilder, p.X, p.Y, p.Z, p.V)
-	strupro.PosMessageAddEid(builder, p.Eid)
-	strupro.PosMessageAddPos(builder, pos)
-}
+
+
+

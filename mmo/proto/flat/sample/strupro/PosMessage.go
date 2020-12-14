@@ -59,32 +59,16 @@ func (rcv *PosMessage) MutateEid(n int32) bool {
 	return rcv._tab.MutateInt32Slot(6, n)
 }
 
-func (rcv *PosMessage) Egen() int32 {
+func (rcv *PosMessage) S() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
-		return rcv._tab.GetInt32(o + rcv._tab.Pos)
+		return rcv._tab.ByteVector(o + rcv._tab.Pos)
 	}
-	return 0
-}
-
-func (rcv *PosMessage) MutateEgen(n int32) bool {
-	return rcv._tab.MutateInt32Slot(8, n)
-}
-
-func (rcv *PosMessage) Pid() int32 {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
-	if o != 0 {
-		return rcv._tab.GetInt32(o + rcv._tab.Pos)
-	}
-	return 0
-}
-
-func (rcv *PosMessage) MutatePid(n int32) bool {
-	return rcv._tab.MutateInt32Slot(10, n)
+	return nil
 }
 
 func PosMessageStart(builder *flatbuffers.Builder) {
-	builder.StartObject(4)
+	builder.StartObject(3)
 }
 func PosMessageAddPos(builder *flatbuffers.Builder, pos flatbuffers.UOffsetT) {
 	builder.PrependStructSlot(0, flatbuffers.UOffsetT(pos), 0)
@@ -92,11 +76,8 @@ func PosMessageAddPos(builder *flatbuffers.Builder, pos flatbuffers.UOffsetT) {
 func PosMessageAddEid(builder *flatbuffers.Builder, eid int32) {
 	builder.PrependInt32Slot(1, eid, 0)
 }
-func PosMessageAddEgen(builder *flatbuffers.Builder, egen int32) {
-	builder.PrependInt32Slot(2, egen, 0)
-}
-func PosMessageAddPid(builder *flatbuffers.Builder, pid int32) {
-	builder.PrependInt32Slot(3, pid, 0)
+func PosMessageAddS(builder *flatbuffers.Builder, s flatbuffers.UOffsetT) {
+	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(s), 0)
 }
 func PosMessageEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()

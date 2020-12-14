@@ -5,6 +5,7 @@ import (
 	"mxs/log"
 )
 
+
 /*
 	AOI管理模块
  */
@@ -143,24 +144,24 @@ func (m *AOIManager) GetEidsByGid(gid int) (entityIds []int) {
 
 // 移除一个格子中的entityid
 func (m *AOIManager) RemoveEidFromFGrid(eid, gid int) {
-	m.grids[gid].Remove(eid)
+	m.grids[gid].RemoveEntity(eid)
 }
 
 // 添加一个entity到一个格子中
 func(m *AOIManager) AddEidToGrid(eid, gid int) {
-	m.grids[gid].Add(eid)
+	m.grids[gid].AddEntity(eid)
 }
 
 // 通过横纵坐标添加一个entity到一个格子中
 func (m *AOIManager) AddToGridByPos(eid int, x, y float32) {
 	gid := m.GetGIDByPos(x, y)
 	grid := m.grids[gid]
-	grid.Add(eid)
+	grid.AddEntity(eid)
 }
 
 // 通过横纵坐标从格子中删除一个entity
 func (m *AOIManager) RemoveFromGridByPos(eid int, x, y float32) {
 	gid := m.GetGIDByPos(x, y)
 	grid := m.grids[gid]
-	grid.Remove(eid)
+	grid.RemoveEntity(eid)
 }

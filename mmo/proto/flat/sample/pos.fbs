@@ -8,12 +8,21 @@ struct Position {
     v:float;
 }
 
+
 /// PosMessage 位置信息
 table PosMessage {
     pos:Position;
     eid:int;
-    egen:int;
-    pid:int;
+    s:string;
+}
+
+/// TalkMessage 聊天信息
+table TalkMessage {
+    eid:int;
+    mid:int=1; // 1世界聊天 2.玩家位置
+    pos:Position;
+    s:string;
 }
 
 root_type PosMessage;
+root_type TalkMessage;

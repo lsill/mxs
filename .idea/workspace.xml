@@ -2,18 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mx.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/zinx/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/zinx/client/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zinx/client/client1.go" beforeDir="false" afterPath="$PROJECT_DIR$/zinx/client/client1.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zinx/client/client3.go" beforeDir="false" afterPath="$PROJECT_DIR$/zinx/client/client3.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zinx/client/server1t.go" beforeDir="false" afterPath="$PROJECT_DIR$/zinx/client/server1t.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mmo/core/constcode/area.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mmo/core/constcode/message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mmo/core/entity/player.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mmo/core/entity/unit.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mmo/core/worldmanager/world_chat.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mmo/core/worldmanager/world_manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/TalkMessage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmo/core/aoi/aoi.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/aoi/aoi.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmo/core/aoi/gird.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/aoi/gird.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmo/core/entity/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/entity/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/flatutil/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/proto/flat/sample/flatutil/helper.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/pos.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/proto/flat/sample/pos.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/PosMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/PosMessage.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +47,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Module.GOPATH.is.expanded" value="true" />
@@ -166,9 +171,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
