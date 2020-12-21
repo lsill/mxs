@@ -2,8 +2,6 @@ package entity
 
 import (
 	"math/rand"
-	"mxs/mmo/core/aoi"
-	"mxs/mmo/core/worldmanager"
 	"sync"
 )
 
@@ -44,35 +42,7 @@ func NewEntity() *Entity {
 }
 
 
-// 得到当前实体所在格子的id
-func (en *Entity) GetGid() int{
-	return worldmanager.WorldMgrObj.AoiMgr.GetGIDByPos(en.X, en.Y)
-}
 
-// 得到当当前实体附近所有格子
-func (en *Entity) GetCurAllGirds() []*aoi.Grid {
-	return worldmanager.WorldMgrObj.AoiMgr.GetSurroundGridsByGid(en.GetGid())
-}
-
-// 得到当前实体附近所有实体
-func (en *Entity) GetCurAllEntitys() []*Entity {
-  	entitys := make([]*Entity, 0 , 1000)
-  	girds := en.GetCurAllGirds()
-  	for i := 0; i < len(girds); i++{
-  		entitys = append(entitys, girds[i].GetAllEntitys()...)
-	}
-	return entitys
-}
-
-// 得到当前角色附近所有玩家
-func (en *Entity) GetCurAllPlayers() []*Player {
-	entitys := make([]*Player, 0 , 1000)
-	girds := en.GetCurAllGirds()
-	for i := 0; i < len(girds); i++{
-		entitys = append(entitys, girds[i].GetAllPlayers()...)
-	}
-	return entitys
-}
 
 
 

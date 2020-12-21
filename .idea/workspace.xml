@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mmo/core/constcode/area.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mmo/core/constcode/message.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mmo/core/entity/player.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mmo/core/entity/unit.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mmo/core/worldmanager/world_chat.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mmo/core/worldmanager/world_manager.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/TalkMessage.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/aoi/aoi.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/aoi/aoi.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mmo/core/aoi/gird.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/aoi/gird.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mmo/core/entity/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/entity/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/flatutil/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/proto/flat/sample/flatutil/helper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/pos.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/proto/flat/sample/pos.fbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/PosMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/PosMessage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmo/core/entity/player.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/entity/player.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

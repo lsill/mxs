@@ -2,7 +2,6 @@ package entity
 
 import (
 	"mxs/api/iface"
-	"mxs/mmo/core/constcode"
 	"mxs/mmo/proto/flat/sample/flatutil"
 	"mxs/mmo/proto/flat/sample/strupro"
 )
@@ -42,9 +41,9 @@ func (p *Player) SyncEntity() {
 
 // 附近消息（气泡消息）
 func (p *Player) BubbleTalk(content []byte) {
-	p.Entity.GetGid()
+	/*p.Entity.GetGid()
 	players := p.Entity.GetCurAllPlayers()
 	for i := 0; i < len(players); i++ {
 		players[i].SendMsg(constcode.MsgBubbleTaik, content)
-	}
+	}*/
 }
