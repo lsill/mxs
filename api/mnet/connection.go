@@ -3,6 +3,7 @@ package mnet
 import "C"
 import (
 	"errors"
+	"github.com/xtaci/kcp-go"
 	"io"
 	"mxs/api/iface"
 	"mxs/log"
@@ -263,3 +264,51 @@ func (c *Connection) RemoveProperty(key string) {
 	defer c.propertyLock.Unlock()
 	delete(c.property, key)
 }
+
+type KConnection struct {
+	// kcp服务器
+	KcpServer iface.IServer
+	// 当前连接的Kcp会话
+	Session *kcp.UDPSession
+	// 当前连接的会话id，全局唯一id
+	SessionId uint32
+	// 回写通道
+	msgChan chan []byte
+}
+
+func (c *KConnection) Start() {
+
+}
+
+func (c *KConnection) Stop() {
+
+}
+
+
+func (c *KConnection) GetUdpSession() *kcp.UDPSession {
+	return  c.Session
+}
+
+func (c *KConnection) GetKcpId() uint32 {
+	return c.SessionId
+}
+
+func (c *KConnection) GetConnectionAddr() net.Addr {
+	return c.Session.RemoteAddr()
+}
+
+func (c *KConnection) SendMsg(msgId uint32, data []byte) (int, error) {
+	// 将data封包，并且发送
+	dp := NewDataPack()
+	msg , err := dp.Pack(NewMsgPackage(msgId, data))
+	n, err := c.Session.Write(data)
+	if err != nil {
+		return n, err
+	}
+	c.msgChan <- msg
+	return n, nil
+}
+
+
+
+

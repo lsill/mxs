@@ -2,10 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/quicclient" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/quicclient.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/test/cert.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/test/cert.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/test/priv.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kcpTest/client/client" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kcpTest/client/client.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kcpTest/server/server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quicTest/server/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/aoi/gird.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/aoi/gird.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/entity/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/entity/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/entity/player.go" beforeDir="false" afterPath="$PROJECT_DIR$/mmo/core/entity/player.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/iface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/iface/iconnection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/mnet/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mxs" beforeDir="false" afterPath="$PROJECT_DIR$/mxs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,14 +67,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/kcpTest/client" />
       <recent name="$PROJECT_DIR$/mmo/core/entity" />
       <recent name="$PROJECT_DIR$/mmo/core/aoi" />
       <recent name="$PROJECT_DIR$/mmo" />
       <recent name="$PROJECT_DIR$/proto" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go (1)">
+  <component name="RunManager" selected="Go Build.go build mxs/kcpTest/server">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="mx" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -77,11 +92,12 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="mx" />
-      <working_directory value="$PROJECT_DIR$/zinx" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/zinx/main.go" />
+    <configuration name="go build mxs" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="mxs" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="mxs" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -93,26 +109,22 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="TestAOIManager_GetSurroundGridsByGid in webV/mmo/core" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="mx" />
-      <working_directory value="$PROJECT_DIR$/mmo/core" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="webV/mmo/core" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestAOIManager_GetSurroundGridsByGid\E$" />
+    <configuration name="go build mxs/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="mxs" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/client/quicclient.go" />
+      <package value="mxs/client" />
+      <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="TestNewAOIManager in webV/mmo/core" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="mx" />
-      <working_directory value="$PROJECT_DIR$/mmo/core" />
-      <framework value="gotest" />
+    <configuration name="go build mxs/kcpTest/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="mxs" />
+      <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="webV/mmo/core" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestNewAOIManager\E$" />
+      <filePath value="$PROJECT_DIR$/kcpTest/server/server.go" />
+      <package value="mxs/kcpTest/server" />
+      <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -126,19 +138,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Build.go build mxs/bin/protoc" />
       <item itemvalue="Go Build.go build main.go (1)" />
-      <item itemvalue="Go Test.TestAOIManager_GetSurroundGridsByGid in webV/mmo/core" />
-      <item itemvalue="Go Test.TestNewAOIManager in webV/mmo/core" />
+      <item itemvalue="Go Build.go build mxs" />
+      <item itemvalue="Go Build.go build mxs/client" />
+      <item itemvalue="Go Build.go build mxs/kcpTest/server" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build mxs/kcpTest/server" />
+        <item itemvalue="Go Build.go build mxs/client" />
+        <item itemvalue="Go Build.go build mxs" />
         <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Build.go build mxs/bin/protoc" />
-        <item itemvalue="Go Test.TestAOIManager_GetSurroundGridsByGid in webV/mmo/core" />
-        <item itemvalue="Go Test.TestNewAOIManager in webV/mmo/core" />
-        <item itemvalue="Go Build.go build main.go" />
       </list>
     </recent_temporary>
   </component>
@@ -169,5 +181,21 @@
       </map>
     </environment>
     <proxy>https://goproxy.io</proxy>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$USER_HOME$/serverproj/pkg/mod/github.com/lucas-clemente/quic-go@v0.19.3/client.go</url>
+          <line>206</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$USER_HOME$/serverproj/pkg/mod/github.com/lucas-clemente/quic-go@v0.19.3/client.go</url>
+          <line>313</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,7 +1,12 @@
 package iface
 
-import "net"
+import (
+	"github.com/xtaci/kcp-go"
+	"net"
+)
 
+
+// 此处用于tcp链接
 type IConnection interface {
 	// 启动连接，当前连接开始工作
 	Start()
@@ -17,7 +22,6 @@ type IConnection interface {
 	SendMsg(MsgId uint32, data []byte) error
 	// 直接将Message数据发送给远程的TCP客户端（有缓冲）
 	SendBuffMsg(MsgId uint32, data []byte) error	// 添加带缓冲发送消息接口
-
 	// 设置连接属性
 	SetProperty(key string, value interface{})
 	// 获取链接属性
@@ -28,3 +32,19 @@ type IConnection interface {
 
 // 定义一个统一处理链接业务的接口
 //type HandFunc func(conn *mnet.TCPConn,bytes []byte,event int) error
+
+// 此处用于kcp链接
+type IKConnection interface {
+	// 启动kcp链接
+	Start()
+	// 停止kcp链接
+	Stop()
+	// 获得udp会话信息
+	GetUdpSession() *kcp.UDPSession
+	// 获得kcp链接id
+	GetKcpId() uint32
+	// 获得链接地址
+	GetConnectionAddr() net.Addr
+	// 发送消息(无缓冲)
+	SendMsg(msg uint32, data []byte)  (int, error)
+}
