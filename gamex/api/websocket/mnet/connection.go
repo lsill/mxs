@@ -3,16 +3,16 @@ package mnet
 import (
 	"errors"
 	"github.com/gorilla/websocket"
-	"mxs/api/websocket/iface"
 	logs "mxs/log"
+	"mxs/gamex/api/websocket/iface"
 	"net"
 )
 
 type Connection struct {
 	webserver iface.IServer
-	conn *websocket.Conn
-	connid uint32
-	isClosed bool
+	conn      *websocket.Conn
+	connid    uint32
+	isClosed  bool
 	// 告知连接已经退出
 	ExitBuffChan chan bool
 	// 无缓冲通道，俩个goroutine之间通信

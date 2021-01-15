@@ -1,6 +1,6 @@
 package flatutil
 
-import "mxs/proto/flat/flatbuffers"
+import "mxs/gamex/proto/flat/flatbuffers"
 
 func GetNewBuilder() *flatbuffers.Builder {
 	return flatbuffers.NewBuilder(20480)

@@ -3,9 +3,9 @@ package mnet
 import (
 	"errors"
 	"fmt"
-	"mxs/api/tcp/iface"
+	"mxs/gamex/api/tcp/iface"
+	"mxs/gamex/utils"
 	"mxs/log"
-	"mxs/utils"
 	"net"
 	"time"
 )

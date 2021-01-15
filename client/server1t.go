@@ -2,9 +2,9 @@ package main
 
 import (
 	"io"
-	"net"
 	"mxs/log"
-	"mxs/api/mnet"
+	"mxs/gamex/api/tcp/mnet"
+	"net"
 )
 
 func main() {

@@ -1,12 +1,12 @@
 package mnet
 
 import (
-	"mxs/api/websocket/iface"
+	"mxs/gamex/api/websocket/iface"
 )
 
 type Request struct {
 	session *iface.ISession
-	pk iface.IPacket
+	pk      iface.IPacket
 }
 
 func (r *Request) Getsession() *iface.ISession {

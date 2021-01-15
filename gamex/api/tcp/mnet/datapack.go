@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"mxs/api/tcp/iface"
+	"mxs/gamex/api/tcp/iface"
+	"mxs/gamex/utils"
 	"mxs/log"
-	"mxs/utils"
 )
 
 // 封包拆包实力，暂时不需要成员

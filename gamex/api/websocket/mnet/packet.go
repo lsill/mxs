@@ -13,7 +13,7 @@ func (rcv *Packet) Data() []byte {
 	return rcv.message
 }
 
-func NewPacket(typ int32,message []byte) *Packet{
+func NewPacket(typ int32,message []byte) *Packet {
 	return &Packet{
 		message: message,
 		typ: typ,

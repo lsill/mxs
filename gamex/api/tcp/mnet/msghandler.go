@@ -1,9 +1,9 @@
 package mnet
 
 import (
-	"mxs/api/tcp/iface"
+	"mxs/gamex/api/tcp/iface"
+	"mxs/gamex/utils"
 	"mxs/log"
-	"mxs/utils"
 )
 
 /*

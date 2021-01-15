@@ -3,7 +3,7 @@ package mnet
 import (
 	"container/list"
 	"errors"
-	"mxs/api/websocket/iface"
+	"mxs/gamex/api/websocket/iface"
 	"net"
 	"sync"
 	"sync/atomic"
@@ -14,16 +14,16 @@ var ErrClosed = errors.New("link.session closed")
 
 
 type Session struct {
-	server iface.IServer
-	id uint64
-	conn *net.Conn
-	encoder iface.Encoder
-	decoder iface.Decoder
-	closeChan chan int
-	closeFlag int32
+	server          iface.IServer
+	id              uint64
+	conn            *net.Conn
+	encoder         iface.Encoder
+	decoder         iface.Decoder
+	closeChan       chan int
+	closeFlag       int32
 	closeEventMutex sync.Mutex
-	metricfunc iface.MerticFun
-	State interface{}
+	metricfunc      iface.MerticFun
+	State           interface{}
 	closeCallbacks  *list.List
 }
 

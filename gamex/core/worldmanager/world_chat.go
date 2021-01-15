@@ -1,10 +1,10 @@
 package worldmanager
 
 import (
-	"mxs/api/tcp/iface"
-	"mxs/api/tcp/mnet"
 	"mxs/log"
-	"mxs/proto/flat/sample/strupro"
+	"mxs/gamex/api/tcp/iface"
+	"mxs/gamex/api/tcp/mnet"
+	"mxs/gamex/proto/flat/sample/strupro"
 )
 
 // 世界聊天 路由业务

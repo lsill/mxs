@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"mxs/gamex/api/tcp/iface"
 	"time"
@@ -37,7 +36,7 @@ var WebsocketObj *WebsocketConfig
 
 // 读取用户配置文件
 func (g *GloBalObj) Reload() {
-	data ,err := ioutil.ReadFile("conf/api.json")
+	data ,err := ioutil.ReadFile("gamex/conf/api.json")
 	if err != nil {
 		panic(err)
 	}
@@ -63,12 +62,12 @@ func init() {
 	}
 	// 从配置文件中加载一些配置参数
 	GloUtil.Reload()
-	WebsocketObj = &WebsocketConfig{}
-	WebsocketObj.Reload()
-	fmt.Println("")
+	//WebsocketObj = &WebsocketConfig{}
+	//WebsocketObj.Reload()
+	//fmt.Println("")
 }
 
-func (g *WebsocketConfig) Reload() {
+/*func (g *WebsocketConfig) Reload() {
 	data, err := ioutil.ReadFile("conf/websocket.json")
 	if err != nil {
 		panic(err)
@@ -77,7 +76,7 @@ func (g *WebsocketConfig) Reload() {
 	if err != nil {
 		panic(err)
 	}
-}
+}*/
 
 type WebsocketConfig struct {
 	// 服务器开启时间（用于开发者控制台缓存）

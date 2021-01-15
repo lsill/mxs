@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"mxs/api/tcp/iface"
-	"mxs/proto/flat/sample/flatutil"
-	"mxs/proto/flat/sample/strupro"
+	"mxs/gamex/api/tcp/iface"
+	"mxs/gamex/proto/flat/sample/flatutil"
+	"mxs/gamex/proto/flat/sample/strupro"
 )
 
 // 玩家

@@ -3,7 +3,7 @@
 package strupro
 
 import (
-	flatbuffers "mxs/proto/flat/flatbuffers"
+	flatbuffers "mxs/gamex/proto/flat/flatbuffers"
 )
 
 type Position struct {

@@ -1,6 +1,6 @@
 package mnet
 
-import "mxs/api/tcp/iface"
+import "mxs/gamex/api/tcp/iface"
 
 type Request struct {
 	conn iface.IConnection // 已经和客户端建立好的 链接

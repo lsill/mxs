@@ -1,10 +1,10 @@
 package main
 
 import (
-	"mxs/api/iface"
-	"mxs/api/mnet"
 	"mxs/log"
-	"mxs/mmo/core/entity"
+	"mxs/gamex/api/tcp/iface"
+	"mxs/gamex/api/tcp/mnet"
+	"mxs/gamex/core/entity"
 )
 
 type PingRouter struct {
@@ -89,6 +89,5 @@ func main() {
 	s := mnet.NewServer()
 	s.SetOnConnStart(OnConnectionAdd)
 	s.Server()
-
 }
 

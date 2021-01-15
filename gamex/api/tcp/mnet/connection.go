@@ -5,9 +5,9 @@ import (
 	"errors"
 	"github.com/xtaci/kcp-go"
 	"io"
-	"mxs/api/tcp/iface"
+	"mxs/gamex/api/tcp/iface"
+	"mxs/gamex/utils"
 	"mxs/log"
-	"mxs/utils"
 	"net"
 	"sync"
 )

@@ -1,11 +1,11 @@
 package worldmanager
 
 import (
-	"mxs/api/tcp/iface"
 	"mxs/log"
-	"mxs/mmo/core/aoi"
-	"mxs/mmo/core/constcode"
-	"mxs/mmo/core/entity"
+	"mxs/gamex/api/tcp/iface"
+	"mxs/gamex/core/aoi"
+	"mxs/gamex/core/constcode"
+	"mxs/gamex/core/entity"
 	"sync"
 )
 
