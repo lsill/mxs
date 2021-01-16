@@ -22,7 +22,16 @@ type Connection struct {
 
 
 func(c *Connection) Start() {
+	go c.StartReader()
+	go c.StartWriter()
+	// TODO 此处留着处理hook
 
+	for {
+		select {
+		case <- c.ExitBuffChan:
+			return
+		}
+	}
 }
 
 func(c *Connection) Stop() {
@@ -84,10 +93,28 @@ func (c *Connection) StartReader() {
 			conn: c,
 			pk:   data,
 		}
-
+		logs.Release("req is %v", req)
 	}
 }
 
 func (c *Connection) StartWriter() {
-
+	logs.Debug("Writer %v is Running", c.RemoteAddr())
+	defer logs.Debug("conn writer %v exit!", c.RemoteAddr())
+	for {
+		select {
+		case data, ok := <-c.msgChan:
+			if ok {
+				err := c.Conn().WriteMessage(websocket.BinaryMessage, data)
+				if err != nil{
+					logs.Error("Send Data error, ConnWriter exit!")
+					return
+				}
+			} else {
+				logs.Error("msgChan is cloesd")
+				break
+			}
+		case <- c.ExitBuffChan:
+			return
+		}
+	}
 }
