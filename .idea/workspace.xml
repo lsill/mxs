@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/ipackage.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/proto/protoc/sample/rootpacket.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/iface/ipacket.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/iface/irequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/irequest.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/connection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/mnet/packet.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/mnet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/request.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/protoc/sample/protoc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/protoc.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/protoc/sample/test.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/pb/test.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/iface/iendpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/iface/iendpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/mnet/console.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/mnet/console.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/mnet/env.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/mnet/env.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/mnet/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/mnet/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/mnet/httpserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/mnet/httpserver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/mnet/launcher.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/mnet/launcher.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/mnet/license.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/mnet/license.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/mnet/process_endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/mnet/process_endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket/mnet/websocket_endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/websocket/mnet/websocket_endpoint.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +61,11 @@
       <recent name="$PROJECT_DIR$/ scenes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client" />
       <recent name="$PROJECT_DIR$/gamex/api/websocket/mnet" />
       <recent name="$PROJECT_DIR$/gamex/proto/protoc" />
       <recent name="$PROJECT_DIR$/gamex" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/mmo" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build mxs">

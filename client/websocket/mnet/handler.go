@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/gorilla/websocket"
+	"mxs/client/websocket/iface"
 	"mxs/gamex/utils"
-	"mxs/websocket/iface"
 	"net"
 	"net/http"
 	"os"
@@ -38,7 +38,7 @@ type WebsocketdHandler struct {
 	Id string
 	*RemoteInfo
 	*URLInfo // TODO: I cannot find where it's used except in one single place as URLInfo.FilePath
-	Env []string
+	Env      []string
 
 	command string
 }
@@ -46,8 +46,8 @@ type WebsocketdHandler struct {
 // NewWebsocketdHandler构造该结构并解析其中的所有必需内容...
 func NewWebsocketdHandler(ws *WebsocketServer, req *http.Request) (wsh *WebsocketdHandler, err error) {
 	wsh = &WebsocketdHandler{
-		server:     ws,
-		Id:         generateId(),
+		server: ws,
+		Id:     generateId(),
 	}
 	wsh.RemoteInfo, err = GetRemoteInfo(req.RemoteAddr, ws.Config.ReverseLookup)
 	if err != nil {
