@@ -2,6 +2,7 @@ package mnet
 
 import (
 	"errors"
+	"github.com/golang/protobuf/proto"
 	"github.com/gorilla/websocket"
 	logs "mxs/log"
 	"mxs/gamex/api/websocket/iface"
@@ -72,5 +73,21 @@ func (c *Connection) StartReader() {
 			logs.Error("read err: %v", err)
 			break
 		}
+		data := &Package{}
+		err = proto.Unmarshal(message, data)
+		if err != nil {
+			logs.Error("reader: unmarshal err")
+			return
+		}
+		logs.Debug("reader data:%v", data)
+		req := Request{
+			conn: c,
+			pk:   data,
+		}
+
 	}
+}
+
+func (c *Connection) StartWriter() {
+
 }

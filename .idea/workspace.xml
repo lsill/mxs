@@ -2,101 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/connecttest/websocket/client" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/connecttest/websocket/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/connecttest/websocket/client1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/connecttest/websocket/client1.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/connecttest/websocket/server" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/connecttest/websocket/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/tcp/iface/iconnmanger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/tcp/iface/imsghandler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/tcp/iface/irequest.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/iconnnection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/ilink.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/imessage.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/imetric.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/ipacket.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/irequest.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/iserver.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/isession.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/connection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/packet.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/request.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/session.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/conf/websocket.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamex/utils/globalobj.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/iface/iendpoint.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/mnet/console.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/mnet/env.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/mnet/handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/mnet/httpserver.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/mnet/launcher.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/mnet/license.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/mnet/process_endpoint.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket/mnet/websocket_endpoint.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/ipackage.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gamex/proto/protoc/sample/rootpacket.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/iface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/iface/iconnection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/iface/iconnmanger.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/iface/idatapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/iface/idatapack.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/iface/imessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/iface/imessage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/iface/imsghandler.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/iface/irequest.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/iface/irouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/iface/irouter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/iface/iserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/iface/iserver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/connection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/connmanager.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/connmanager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/datapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/datapack.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/msghandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/msghandler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/request.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mnet/server_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/tcp/mnet/server_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client1.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/client1.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/server1t.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/server1t.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/api.json" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/conf/api.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcpTest/client/client" beforeDir="false" afterPath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcpTest/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kcpTest/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/connecttest/kcpTest/server/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/aoi/aoi.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/aoi/aoi.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/aoi/aoi_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/aoi/aoi_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/aoi/gird.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/aoi/gird.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/constcode/area.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/constcode/area.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/constcode/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/constcode/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/entity/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/entity/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/entity/player.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/entity/player.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/entity/unit.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/entity/unit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/worldmanager/world_chat.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/worldmanager/world_chat.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/core/worldmanager/world_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/core/worldmanager/world_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/BUILD.bazel" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/BUILD.bazel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/builder.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/builder.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/doc.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/doc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/encode.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/encode.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/grpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/lib.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/lib.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/sizes.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/sizes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/struct.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/struct.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatbuffers/table.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/table.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/flatc" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/flatc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/flatc" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/sample/flatc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/flatutil/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/sample/flatutil/helper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/pos.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/sample/pos.fbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/PosMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/sample/strupro/PosMessage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/Position.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/sample/strupro/Position.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/strupro/TalkMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/sample/strupro/TalkMessage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/flat/sample/test.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/flat/sample/test.fbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/protoc/protoc-gen-go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/protoc-gen-go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/protoc/sample/protoc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/sample/protoc.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/protoc/sample/test.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/sample/test.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/protoc/sample/test.proto" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/sample/test.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmo/proto/protoc/test.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quicTest/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/connecttest/quicTest/server/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/globalobj.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/iface/ipacket.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/iface/irequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/websocket/iface/irequest.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/mnet/packet.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/api/websocket/mnet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/api/websocket/mnet/request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/proto/protoc/sample/protoc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/protoc.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/proto/protoc/sample/test.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/proto/protoc/pb/test.pb.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,16 +53,19 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ scenes" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ scenes" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/gamex/api/websocket/mnet" />
+      <recent name="$PROJECT_DIR$/gamex/proto/protoc" />
       <recent name="$PROJECT_DIR$/gamex" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/mmo" />
-      <recent name="$PROJECT_DIR$/client" />
-      <recent name="$PROJECT_DIR$/api/tcp" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build mxs">

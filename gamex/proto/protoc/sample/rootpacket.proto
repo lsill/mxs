@@ -1,0 +1,9 @@
+syntax = "proto3";                         //指定版本信息，不指定会报错
+package pb;                        //后期生成go文件的包名
+option go_package = ".;sample";
+
+//message为关键字，作用为定义一种消息类型
+message Package {
+  int32    typ = 1;                    // 包映射类型
+  bytes  data = 2;         // 消息主题
+}

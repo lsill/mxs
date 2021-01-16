@@ -5,18 +5,18 @@ import (
 )
 
 type Request struct {
-	session *iface.ISession
-	pk      iface.IPacket
+	conn iface.IConnection
+	pk      iface.IPackage
 }
 
-func (r *Request) Getsession() *iface.ISession {
-	return r.session
+func (r *Request) GetConn() iface.IConnection {
+	return r.conn
 }
 
 func (r *Request) GetPkTyp() int32 {
-	return r.pk.Typ()
+	return r.GetPkTyp()
 }
 
 func (r *Request) GetData() []byte {
-	return r.pk.Data()
+	return r.GetData()
 }
