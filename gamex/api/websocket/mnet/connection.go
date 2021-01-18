@@ -20,6 +20,16 @@ type Connection struct {
 	msgChan chan []byte
 }
 
+func NewConnecton(server iface.IServer, conn *websocket.Conn,connid uint32, msghandler iface.IMsgHandle) *Connection{
+	return &Connection{
+		webserver:    server,
+		conn:         conn,
+		connid:       connid,
+		isClosed:     false,
+		ExitBuffChan: make(chan bool, 1),
+		msgChan:      make(chan []byte),
+	}
+}
 
 func(c *Connection) Start() {
 	go c.StartReader()

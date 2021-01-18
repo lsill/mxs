@@ -2,6 +2,7 @@ package mnet
 
 import (
 	"mxs/gamex/api/websocket/iface"
+	"mxs/gamex/utils"
 	logs "mxs/log"
 )
 
@@ -14,9 +15,9 @@ type MsgHandle struct {
 func NewMsgHandle() *MsgHandle {
 	return &MsgHandle{
 		Apis:           make(map[int32]iface.IRouter),
-		WorkerPoolSize: 10000,
+		WorkerPoolSize: utils.GloUtil.MaxWorkerTaskLen,
 		// 一个worker对应一个queue
-		TaskQueue: make([]chan iface.IRequest, 100),
+		TaskQueue: make([]chan iface.IRequest, utils.GloUtil.MaxWorkerTaskLen),
 	}
 }
 

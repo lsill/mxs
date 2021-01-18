@@ -3,8 +3,10 @@ package mnet
 import (
 	"flag"
 	"fmt"
+	"github.com/gorilla/websocket"
 	"github.com/prometheus/common/log"
 	"mxs/gamex/api/websocket/iface"
+	"mxs/gamex/utils"
 	logs "mxs/log"
 	"net/http"
 	"time"
@@ -21,11 +23,13 @@ type Server struct {
 	OnConnStop func(conn iface.IConnection)
 }
 
-func NewServer() *Server {
+func NewServer() iface.IServer {
 	return &Server{
 		name:         "Main",
 		ip:           "127.0.0.1",
 		port:         2333,
+		msgHandler: NewMsgHandle(),
+		ConnMgr: NewConnManager(),
 	}
 }
 
@@ -38,12 +42,14 @@ func (s *Server) Server() {
 		time.Sleep(10 *time.Second)
 	}
 }
-
+var upgrade = websocket.Upgrader{}	// 以后在配置对应参数
+var Cid uint32
 func (s *Server) Start() {
 	logs.Release("[Start] Server listenner at addr %s:%d is startting", s.IP(), s.Port())
 
 	go func() {
 		addr := flag.String("addr", fmt.Sprintf("%s:%d", s.IP(), s.Port()), "http service address")
+		http.HandleFunc("/dt", s.dtserver)
 		err := http.ListenAndServe(*addr, nil)
 		if err != nil {
 			logs.Error("listne addr %s failed", addr)
@@ -52,9 +58,28 @@ func (s *Server) Start() {
 	}()
 }
 
+func (s *Server)dtserver(w http.ResponseWriter, r *http.Request) {
+	c, err := upgrade.Upgrade(w,r, nil)
+	if err != nil {
+		logs.Error("upgrade err %s", err)
+		return
+	}
+	defer c.Close()
+	if s.ConnMgr.Len() > utils.GloUtil.MaxConn {	// 此处需要修改
+		c.Close()
+		logs.Warn("conn is full")
+		return
+	}
+	dealconn := NewConnecton(s, c, Cid, s.msgHandler)
+	Cid++
+
+	go dealconn.Start()
+}
+
+
 func(s *Server) Stop(){
 	logs.Release("[Stop] server stop, name is %v", s.Name())
-
+	s.ConnMgr.ClearConn()
 }
 
 func (s *Server) IP() string {
@@ -73,7 +98,7 @@ func (s *Server) Name() string {
 	return s.name
 }
 
-func (s *Server) AddRouter(msgid uint32, router iface.IRouter) {
+func (s *Server) AddRouter(msgid int32, router iface.IRouter) {
 	s.msgHandler.AddRouter(msgid, router)
 	logs.Release("add Router succ!")
 }
