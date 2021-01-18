@@ -36,7 +36,7 @@ type Server struct {
 // 开启网络服务
 func (s *Server) Start() {
 	log.Release("[Start] Server listenner at IP:%v, port is %d, is starting", s.IP, s.Port)
-	log.Release("[Zinx] Version:%s, MaxConn:%d, MaxPacketsize: %d", utils.GloUtil.Version, utils.GloUtil.MaxConn,
+	log.Release("[] Version:%s, MaxConn:%d, MaxPacketsize: %d", utils.GloUtil.Version, utils.GloUtil.MaxConn,
 		utils.GloUtil.MaxPacketSize)
 	// 0.启动worker工作池
 	s.msgHandler.StarWorkerPool()
@@ -54,7 +54,7 @@ func (s *Server) Start() {
 			log.Warn("listen %v err %v", s.IPVersoion, err)
 		}
 		// 已经监听成功
-		log.Release("start Zinx server %v succ, now listenning...", s.Name)
+		log.Release("start  server %v succ, now listenning...", s.Name)
 
 		var cid uint32
 		cid = 0
@@ -85,7 +85,7 @@ func (s *Server) Start() {
 }
 
 func (s *Server) Stop() {
-	log.Release("[Stop] Zinx server , name %v", s.Name)
+	log.Release("[Stop]  server , name %v", s.Name)
 	// TODO Server.Stop() 将其他需要清理的连接信息或者其他信息 也要一并停止或者清理
 	s.GetConnMgr().ClearConn()
 }

@@ -20,7 +20,7 @@ func main() {
 	for {
 		// 创建一个封包对象 dp
 		dp := mnet.NewDataPack()
-		msg, err := dp.Pack(mnet.NewMsgPackage(1, []byte("Zinx 0.6 Client Test Message 222")))
+		msg, err := dp.Pack(mnet.NewMsgPackage(1, []byte(" 0.6 Client Test Message 222")))
 		if err != nil {
 			log.Error(" pack msg error")
 			return

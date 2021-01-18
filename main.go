@@ -39,14 +39,14 @@ func (this *PingRouter) Handle(request iface.IRequest) {
 	}
 }*/
 
-type HelloZinxRouter struct {
+type HelloRouter struct {
 	mnet.BaseRouter
 }
 
-func (this *HelloZinxRouter) Handle(request iface.IRequest) {
-	log.Debug("Call HelloZinxRouter Handle")
+func (this *HelloRouter) Handle(request iface.IRequest) {
+	log.Debug("Call HelloRouter Handle")
 	log.Debug("recv from client,msgid:%d, data=%s", request.GetMsgID(), string(request.GetData()))
-	err := request.GetConnection().SendMsg(1, []byte("hello Zinx Router 0.6"))
+	err := request.GetConnection().SendMsg(1, []byte("hello  Router 0.6"))
 	if err != nil {
 		log.Error("err is %v", err)
 	}

@@ -16,7 +16,7 @@ func main() {
 		return
 	}
 	for {
-		_, err := conn.Write([]byte("Zinx v3.0"))
+		_, err := conn.Write([]byte(" v3.0"))
 		if err != nil {
 			log.Error("write error err", err)
 			return

@@ -3,22 +3,22 @@ package mnet
 import (
 	"flag"
 	"fmt"
+	"github.com/prometheus/common/log"
+	"mxs/gamex/api/websocket/iface"
 	logs "mxs/log"
 	"net/http"
 	"time"
 )
-
-const maxSessionId = 1000
 
 type Server struct {
 	name string
 	ip string
 	port int
 	ipversion string
- 	//codecType iface.ICodecType
-
-	// about sessions
-	maxSessionId uint64
+	msgHandler	iface.IMsgHandle
+	ConnMgr iface.IConnManger
+	OnConnStart func(conn iface.IConnection)
+	OnConnStop func(conn iface.IConnection)
 }
 
 func NewServer() *Server {
@@ -26,7 +26,6 @@ func NewServer() *Server {
 		name:         "Main",
 		ip:           "127.0.0.1",
 		port:         2333,
-		maxSessionId: maxSessionId,
 	}
 }
 
@@ -54,6 +53,7 @@ func (s *Server) Start() {
 }
 
 func(s *Server) Stop(){
+	logs.Release("[Stop] server stop, name is %v", s.Name())
 
 }
 
@@ -69,3 +69,41 @@ func (s *Server) IPVersion()string{
 	return s.ipversion
 }
 
+func (s *Server) Name() string {
+	return s.name
+}
+
+func (s *Server) AddRouter(msgid uint32, router iface.IRouter) {
+	s.msgHandler.AddRouter(msgid, router)
+	logs.Release("add Router succ!")
+}
+
+func (s *Server) GetConnMgr() iface.IConnManger {
+	return s.ConnMgr
+}
+
+// 设置该Server的连接创建时的HOOK函数
+func (s *Server) SetOnConnStart(hookfunc func(iface.IConnection)) {
+	s.OnConnStart =hookfunc
+}
+
+// 设置该Server的连接断开时的hook函数
+func (s *Server) SetOnConnStop(hookfunc func(connection iface.IConnection)) {
+	s.OnConnStop = hookfunc
+}
+
+// 调用连接OnConnStart hook函数
+func (s *Server) CallOnConnStart(conn iface.IConnection) {
+	if s.OnConnStart != nil {
+		log.Debug("---> CallOnConnStart...")
+		s.OnConnStart(conn)
+	}
+}
+
+// 调用连接OnConnStop hook函数
+func (s *Server) CallOnConnStop(conn iface.IConnection) {
+	if s.OnConnStop != nil {
+		log.Debug("---> CallOnConnStop")
+		s.OnConnStop(conn)
+	}
+}

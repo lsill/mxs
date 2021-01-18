@@ -53,8 +53,8 @@ func (cmg *ConnManager) Len() int {
 // 通过ConnID获取链接
 func (cmg *ConnManager) Get(connid uint32) (iface.IConnection,error){
 	// 保护共享资源map，加读锁
-	cmg.connLock.Lock()
-	defer cmg.connLock.Unlock()
+	cmg.connLock.RLock()
+	defer cmg.connLock.RUnlock()
 
 	if conn, ok := cmg.connections[connid]; ok {
 		return conn, nil

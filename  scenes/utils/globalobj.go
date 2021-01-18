@@ -8,12 +8,12 @@ import (
 )
 
 /*
-	存储一切关Zinx框架的全局参数，供其他模块使用一些参数也可以通过
+	存储一切关框架的全局参数，供其他模块使用一些参数也可以通过
 	用户根据 api.json来配置
  */
 
 type GloBalObj struct {
-	TcpServer iface.IServer // 当前Zinx的全局Server对象
+	TcpServer iface.IServer // 当前的全局Server对象
 	Host      string        // 当前服务器主机IP
 	TcpPort   int           // 当前服务器主机监听端口号
 	Name      string        // 当前服务器名称
@@ -53,7 +53,7 @@ func init() {
 		TcpServer:   nil,
 		Host:        "",
 		TcpPort:     7777,
-		Name:        "ZinxServerApp",
+		Name:        "ServerApp",
 		MaxPacketSize: 0,
 		MaxConn:     12000,
 		Version: "api 0.4",
