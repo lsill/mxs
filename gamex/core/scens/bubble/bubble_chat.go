@@ -1,10 +1,10 @@
-package worldmanager
+package bubble
 
 import (
-	"mxs/log"
 	"mxs/gamex/api/tcp/iface"
 	"mxs/gamex/api/tcp/mnet"
 	"mxs/gamex/proto/flat/sample/strupro"
+	"mxs/log"
 )
 
 // 世界聊天 路由业务

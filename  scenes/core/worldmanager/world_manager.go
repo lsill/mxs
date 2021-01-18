@@ -1,11 +1,11 @@
 package worldmanager
 
 import (
-	"mxs/log"
 	"mxs/gamex/api/tcp/iface"
-	"mxs/gamex/core/aoi"
-	"mxs/gamex/core/constcode"
-	"mxs/gamex/core/entity"
+	"mxs/gamex/core/scens/aoi"
+	"mxs/gamex/core/scens/constcode"
+	"mxs/gamex/core/scens/entity"
+	"mxs/log"
 	"sync"
 )
 
@@ -13,8 +13,8 @@ import (
 	当前游戏世界的总管理模块
  */
 type WorldManager struct {
-	AoiMgr *aoi.AOIManager	// 当前世界地图的aoi规划管理器
-	Players map[int32]*entity.Player	// 当前世界的在线玩家集合
+	AoiMgr *aoi.AOIManager           // 当前世界地图的aoi规划管理器
+	Players map[int32]*entity.Player // 当前世界的在线玩家集合
 	pLock sync.RWMutex
 }
 
@@ -24,8 +24,8 @@ var WorldMgrObj *WorldManager
 // 提供WorldManager 初始化方法
 func init() {
 	WorldMgrObj = &WorldManager{
-		AoiMgr: aoi.NewAOIManager(constcode.AOI_MIN_X, constcode.AOI_MAX_X, constcode.AOI_CNTS_X, constcode.AOI_MIN_Y, constcode.AOI_MAX_Y, constcode.AOI_CNTS_Y),
-		Players:  make(map[int32]*entity.Player),
+		AoiMgr:  aoi.NewAOIManager(constcode.AOI_MIN_X, constcode.AOI_MAX_X, constcode.AOI_CNTS_X, constcode.AOI_MIN_Y, constcode.AOI_MAX_Y, constcode.AOI_CNTS_Y),
+		Players: make(map[int32]*entity.Player),
 	}
 }
 

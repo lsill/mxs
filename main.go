@@ -1,10 +1,10 @@
 package main
 
 import (
-	"mxs/log"
 	"mxs/gamex/api/tcp/iface"
 	"mxs/gamex/api/tcp/mnet"
-	"mxs/gamex/core/entity"
+	"mxs/gamex/core/scens/entity"
+	"mxs/log"
 )
 
 type PingRouter struct {
