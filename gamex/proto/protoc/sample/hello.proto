@@ -1,0 +1,11 @@
+syntax = "proto3";                         //指定版本信息，不指定会报错
+package pb;                        //后期生成go文件的包名
+option go_package = ".;sample";
+
+message HelloReq {
+  string  hello = 1;
+}
+
+message HelloResp {
+  string hello = 1;
+}

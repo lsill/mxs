@@ -1,7 +1,7 @@
 package iface
 
 type IRequest interface {
-	GetData() IPackage
+	GetData() []byte
 	GetConn() IConnection
 	GetPkTyp() int32
 }

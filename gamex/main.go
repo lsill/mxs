@@ -22,7 +22,7 @@ type PingRouter struct {
 // TestHandle
 func (this *PingRouter) Handle(request iface.IRequest) {
 	log.Debug("Call PingRouter Handle")
-	log.Debug("recv from client,msgid:%d, data=%s", request.GetPkTyp(), string(request.GetData().GetData()))
+	//log.Debug("recv from client,msgid:%d, data=%s", request.GetPkTyp(), string(request.GetData().GetData()))
 	err := request.GetConn().SendMsg(0, []byte("ping...ping...ping..."))
 	if err != nil {
 		log.Error("sendmsg err %v", err)
@@ -44,7 +44,7 @@ type HelloRouter struct {
 
 func (this *HelloRouter) Handle(request iface.IRequest) {
 	log.Debug("Call HelloRouter Handle")
-	log.Debug("recv from client,msgid:%d, data=%s", request.GetData(), string(request.GetData().GetData()))
+	//log.Debug("recv from client,msgid:%d, data=%s", request.GetData(), string(request.GetData().GetData()))
 	err := request.GetConn().SendMsg(1, []byte("hello  Router 0.6"))
 	if err != nil {
 		log.Error("err is %v", err)

@@ -14,9 +14,16 @@ func (r *Request) GetConn() iface.IConnection {
 }
 
 func (r *Request) GetPkTyp() int32 {
-	return r.GetPkTyp()
+	return r.pk.GetTyp()
 }
 
 func (r *Request) GetData() []byte {
-	return r.GetData()
+	return r.pk.GetData()
 }
+
+func (r *Request) SetConn(conn iface.IConnection)  {
+	r.conn = conn
+}
+
+
+
