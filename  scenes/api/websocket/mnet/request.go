@@ -1,7 +1,7 @@
 package mnet
 
 import (
-	"mxs/gamex/api/websocket/iface"
+	"mxs/util/api/websocket/iface"
 )
 
 type Request struct {

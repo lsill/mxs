@@ -5,9 +5,9 @@ import (
 	"errors"
 	"github.com/xtaci/kcp-go"
 	"io"
-	"mxs/gamex/api/tcp/iface"
-	"mxs/gamex/utils"
 	"mxs/log"
+	"mxs/util"
+	"mxs/util/api/tcp/iface"
 	"net"
 	"sync"
 )
@@ -46,7 +46,7 @@ func NewConnecion(server iface.IServer,conn *net.TCPConn, connId uint32, msgHand
 		ExitBuffChan: make(chan bool, 1),
 		MsgHandler: msgHandler,
 		msgChan: make(chan []byte),
-		msgBuffChan: make(chan []byte, utils.GloUtil.MaxMsgChanLen),
+		msgBuffChan: make(chan []byte, util.GloUtil.MaxMsgChanLen),
 		property: make(map[string]interface{}), // 初始化连接属性map
 	}
 	// 将新创建的Conn添加到连接管理中
@@ -95,7 +95,7 @@ func (c *Connection) StartReader() {
 			conn: c,
 			msg:  msg,
 		}
-		if utils.GloUtil.MaxWorkerTaskLen > 0{
+		if util.GloUtil.MaxWorkerTaskLen > 0{
 			// 已经启动工作池机制，将消息交给worker处理
 			c.MsgHandler.SendMsgToTaskQueue(&req)
 		} else {

@@ -1,10 +1,10 @@
 package bubble
 
 import (
-	"mxs/gamex/api/tcp/iface"
-	"mxs/gamex/api/tcp/mnet"
 	"mxs/gamex/proto/flat/sample/strupro"
 	"mxs/log"
+	"mxs/util/api/tcp/iface"
+	"mxs/util/api/tcp/mnet"
 )
 
 // 世界聊天 路由业务

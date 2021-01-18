@@ -6,7 +6,7 @@ import (
 	"github.com/astaxie/beego/logs"
 	"github.com/gorilla/websocket"
 	"mxs/client/websocket/iface"
-	"mxs/gamex/utils"
+	"mxs/util"
 	"net"
 	"net/http"
 	"os"
@@ -122,7 +122,7 @@ func GetRemoteInfo(remote string, doLookup bool) (*RemoteInfo, error) {
 	}, nil
 }
 
-func GetURLInfo(path string, config *utils.WebsocketConfig) (*URLInfo, error){
+func GetURLInfo(path string, config *util.WebsocketConfig) (*URLInfo, error){
 	if !config.UsingScriptDir {
 		return &URLInfo{
 			ScriptPath: "/",

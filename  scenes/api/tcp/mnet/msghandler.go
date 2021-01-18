@@ -1,9 +1,9 @@
 package mnet
 
 import (
-	"mxs/gamex/api/tcp/iface"
-	"mxs/gamex/utils"
 	"mxs/log"
+	"mxs/util"
+	"mxs/util/api/tcp/iface"
 )
 
 /*
@@ -19,9 +19,9 @@ type MsgHandle struct {
 func NewMsgHandle() *MsgHandle {
 	return &MsgHandle{
 		Apis:           make(map[uint32]iface.IRouter),
-		WorkerPoolSize: utils.GloUtil.MaxWorkerTaskLen,
+		WorkerPoolSize: util.GloUtil.MaxWorkerTaskLen,
 		// 一个worker对应一个queue
-		TaskQueue: make([]chan iface.IRequest, utils.GloUtil.MaxWorkerTaskLen),
+		TaskQueue: make([]chan iface.IRequest, util.GloUtil.MaxWorkerTaskLen),
 	}
 }
 
@@ -68,7 +68,7 @@ func (mh *MsgHandle) StarWorkerPool() {
 	for i := 0; i < int(mh.WorkerPoolSize); i++ {
 		// 一个worker被启动
 		// 给当前worker对应的任务队列开辟空间
-		mh.TaskQueue[i] = make(chan iface.IRequest, utils.GloUtil.MaxWorkerTaskLen)
+		mh.TaskQueue[i] = make(chan iface.IRequest, util.GloUtil.MaxWorkerTaskLen)
 		// 启动当前worker,阻塞等待对应的任务队列是否有消息传递进来
 		go mh.StarOneWorker(i, mh.TaskQueue[i])
 	}

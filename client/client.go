@@ -3,7 +3,7 @@ package main
 import (
 	"io"
 	"mxs/log"
-	"mxs/gamex/api/tcp/mnet"
+	"mxs/util/api/tcp/mnet"
 	"net"
 	"time"
 )

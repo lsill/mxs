@@ -3,7 +3,7 @@ package mnet
 import (
 	"container/list"
 	"errors"
-	"mxs/gamex/api/websocket/iface"
+	"mxs/util/api/websocket/iface"
 	"net"
 	"sync"
 	"sync/atomic"

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/gorilla/websocket"
-	"mxs/gamex/utils"
+	"mxs/util"
 	"net/http"
 	"net/http/cgi"
 	"net/textproto"
@@ -22,11 +22,11 @@ var ForkNotAllowedError = errors.New("too many forks active")
 
 // 为libwebsocketd正在处理的请求重新发送http.Handler接口。
 type WebsocketServer struct {
-	Config *utils.WebsocketConfig
+	Config *util.WebsocketConfig
 	forks chan byte
 }
 // 创建一个websocket服务器
-func NewWebSocketServer (config *utils.WebsocketConfig, maxforks int) *WebsocketServer {
+func NewWebSocketServer (config *util.WebsocketConfig, maxforks int) *WebsocketServer {
 	mux := &WebsocketServer{
 		Config: config,
 	}
@@ -207,7 +207,7 @@ func (h *WebsocketServer) noteForkCompled() {
 	}
 }
 
-func checkOrigin(req *http.Request, config *utils.WebsocketConfig) error {
+func checkOrigin(req *http.Request, config *util.WebsocketConfig) error {
 	/*
 		转换转换gorilla：
 		来源检查功能，从ServerHTTP主程序中调用wshandshake函数，

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/gorilla/websocket"
 	logs "mxs/log"
-	"mxs/gamex/api/websocket/iface"
+	"mxs/util/api/websocket/iface"
 	"net"
 )
 

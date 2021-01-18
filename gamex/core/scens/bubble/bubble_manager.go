@@ -1,11 +1,11 @@
 package bubble
 
 import (
-	"mxs/gamex/api/tcp/iface"
 	"mxs/gamex/core/scens/aoi"
 	"mxs/gamex/core/scens/constcode"
 	"mxs/gamex/core/scens/entity"
 	"mxs/log"
+	"mxs/util/api/tcp/iface"
 	"sync"
 )
 

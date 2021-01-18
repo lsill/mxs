@@ -3,9 +3,9 @@ package mnet
 import (
 	"errors"
 	"fmt"
-	"mxs/gamex/api/tcp/iface"
-	"mxs/gamex/utils"
 	"mxs/log"
+	"mxs/util"
+	"mxs/util/api/tcp/iface"
 	"net"
 	"time"
 )
@@ -36,8 +36,8 @@ type Server struct {
 // 开启网络服务
 func (s *Server) Start() {
 	log.Release("[Start] Server listenner at IP:%v, port is %d, is starting", s.IP, s.Port)
-	log.Release("Version:%s, MaxConn:%d, MaxPacketsize: %d", utils.GloUtil.Version, utils.GloUtil.MaxConn,
-		utils.GloUtil.MaxPacketSize)
+	log.Release("Version:%s, MaxConn:%d, MaxPacketsize: %d", util.GloUtil.Version, util.GloUtil.MaxConn,
+		util.GloUtil.MaxPacketSize)
 	// 0.启动worker工作池
 	s.msgHandler.StarWorkerPool()
 	go func() {
@@ -68,7 +68,7 @@ func (s *Server) Start() {
 				continue
 			}
 			// 3.2 TODO Server.Start() 设置服务器最大连接控制，如果超过最大连接，那么关闭此新的连接
-			if s.ConnMgr.Len() >= utils.GloUtil.MaxConn {
+			if s.ConnMgr.Len() >= util.GloUtil.MaxConn {
 				conn.Close()
 				log.Warn("conn is full")
 				continue
@@ -110,9 +110,9 @@ func (s *Server) AddRouter(msgid uint32, router iface.IRouter) {
 // 创建一个服务器句柄
 func NewServer() iface.IServer {
 	s := &Server{
-		Name:       utils.GloUtil.Name,
+		Name:       util.GloUtil.Name,
 		IPVersoion: "tcp4",
-		IP:         utils.GloUtil.Host,
+		IP:         util.GloUtil.Host,
 		Port:       7777,
 		msgHandler: NewMsgHandle(), // msgHandler初始化
 		ConnMgr:    NewConnManager(),

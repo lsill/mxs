@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"mxs/gamex/api/tcp/iface"
-	"mxs/gamex/utils"
 	"mxs/log"
+	"mxs/util"
+	"mxs/util/api/tcp/iface"
 )
 
 // 封包拆包实力，暂时不需要成员
@@ -65,7 +65,7 @@ func (dp *DataPack) UnPack(binaryData []byte) (iface.IMessage, error){
 		return nil, err
 	}
 
-	if (utils.GloUtil.MaxPacketSize > 0 && msg.DataLen > utils.GloUtil.MaxPacketSize) {
+	if (util.GloUtil.MaxPacketSize > 0 && msg.DataLen > util.GloUtil.MaxPacketSize) {
 		return nil, errors.New("Too large msg data recived!")
 		log.Error("Too large msg data recived!")
 	}

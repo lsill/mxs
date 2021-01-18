@@ -3,7 +3,7 @@ package mnet
 import (
 	"errors"
 	"mxs/log"
-	"mxs/gamex/api/tcp/iface"
+	"mxs/util/api/tcp/iface"
 	"sync"
 )
 

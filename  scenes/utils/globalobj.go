@@ -3,7 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"io/ioutil"
-	"mxs/gamex/api/tcp/iface"
+	"mxs/util/api/tcp/iface"
 	"time"
 )
 
@@ -36,7 +36,7 @@ var WebsocketObj *WebsocketConfig
 
 // 读取用户配置文件
 func (g *GloBalObj) Reload() {
-	data ,err := ioutil.ReadFile("gamex/conf/api.json")
+	data ,err := ioutil.ReadFile("conf/api.json")
 	if err != nil {
 		panic(err)
 	}
