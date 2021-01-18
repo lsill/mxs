@@ -2,31 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ scenes/conf/api.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/conf/websocket.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/protoc/protoc-gen-go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/protoc/sample/protoc.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/protoc/sample/test.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/protoc/sample/test.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/protoc/test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/utils/globalobj.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/BUILD.bazel" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/builder.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/doc.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/encode.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/grpc.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/lib.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/sizes.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/struct.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatbuffers/table.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/flatc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/sample/flatc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/sample/flatutil/helper.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/sample/pos.fbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/sample/strupro/PosMessage.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/sample/strupro/Position.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/sample/strupro/TalkMessage.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/proto/flat/sample/test.fbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/aoi/aoi.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/aoi/aoi.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/aoi/aoi_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/aoi/aoi_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/aoi/gird.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/aoi/gird.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/constcode/area.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/constcode/area.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/constcode/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/constcode/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/entity/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/entity/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/entity/player.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/entity/player.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/entity/unit.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/entity/unit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/worldmanager/world_chat.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/core/worldmanager/world_manager.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/BUILD.bazel" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/BUILD.bazel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/builder.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/builder.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/doc.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/doc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/encode.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/encode.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/grpc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/lib.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/lib.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/sizes.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/sizes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/struct.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/struct.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/table.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/table.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatc" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/flatc" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/flatc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/flatutil/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/flatutil/helper.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/pos.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/pos.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/strupro/PosMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/PosMessage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/strupro/Position.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/Position.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/strupro/TalkMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/TalkMessage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/test.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/test.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/aoi/aoi.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/aoi/aoi_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/aoi/gird.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/bubble/bubble_chat.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/bubble/bubble_chat.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/bubble/bubble_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/bubble/bubble_manager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/constcode/area.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/constcode/message.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/entity/entity.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/entity/player.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/core/scens/entity/unit.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,11 +89,11 @@
       <recent name="$PROJECT_DIR$/ scenes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ scenes" />
       <recent name="$PROJECT_DIR$/gamex" />
       <recent name="$PROJECT_DIR$/util" />
       <recent name="$PROJECT_DIR$/util/api" />
       <recent name="$PROJECT_DIR$/gamex/core/scens" />
-      <recent name="$PROJECT_DIR$/client" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build mxs/gamex">

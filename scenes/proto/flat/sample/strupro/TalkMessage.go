@@ -3,7 +3,7 @@
 package strupro
 
 import (
-	flatbuffers "mxs/gamex/proto/flat/flatbuffers"
+	flatbuffers "mxs/scenes/proto/flat/flatbuffers"
 )
 
 /// TalkMessage 聊天信息

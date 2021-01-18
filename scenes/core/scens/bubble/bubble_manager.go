@@ -1,9 +1,9 @@
-package worldmanager
+package bubble
 
 import (
-	"mxs/gamex/core/scens/aoi"
-	"mxs/gamex/core/scens/constcode"
-	"mxs/gamex/core/scens/entity"
+	"mxs/scenes/core/scens/aoi"
+	"mxs/scenes/core/scens/constcode"
+	"mxs/scenes/core/scens/entity"
 	"mxs/log"
 	"mxs/util/api/tcp/iface"
 	"sync"

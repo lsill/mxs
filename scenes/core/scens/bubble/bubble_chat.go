@@ -1,7 +1,7 @@
-package worldmanager
+package bubble
 
 import (
-	"mxs/gamex/proto/flat/sample/strupro"
+	"mxs/scenes/proto/flat/sample/strupro"
 	"mxs/log"
 	"mxs/util/api/tcp/iface"
 	"mxs/util/api/tcp/mnet"

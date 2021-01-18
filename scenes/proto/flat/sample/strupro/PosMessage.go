@@ -3,7 +3,7 @@
 package strupro
 
 import (
-	flatbuffers "mxs/gamex/proto/flat/flatbuffers"
+	flatbuffers "mxs/scenes/proto/flat/flatbuffers"
 )
 
 /// PosMessage 位置信息

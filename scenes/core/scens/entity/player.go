@@ -1,8 +1,8 @@
 package entity
 
 import (
-	"mxs/gamex/proto/flat/sample/flatutil"
-	"mxs/gamex/proto/flat/sample/strupro"
+	"mxs/scenes/proto/flat/sample/flatutil"
+	"mxs/scenes/proto/flat/sample/strupro"
 	"mxs/util/api/tcp/iface"
 )
 
