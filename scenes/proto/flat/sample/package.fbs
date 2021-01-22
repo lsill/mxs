@@ -1,0 +1,10 @@
+namespace strupro;
+attribute "priority";
+
+struct Position {
+    x:float;
+    y:float;
+    z:float;
+    v:float;
+}
+root_type PosMessage;

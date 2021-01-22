@@ -2,44 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ scenes/core/aoi/aoi.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/aoi/aoi.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/aoi/aoi_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/aoi/aoi_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/aoi/gird.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/aoi/gird.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/constcode/area.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/constcode/area.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/constcode/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/constcode/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/entity/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/entity/entity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/entity/player.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/entity/player.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/entity/unit.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/entity/unit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/worldmanager/world_chat.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/core/worldmanager/world_manager.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/BUILD.bazel" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/BUILD.bazel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/builder.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/builder.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/doc.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/doc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/encode.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/encode.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/grpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/lib.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/lib.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/sizes.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/sizes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/struct.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/struct.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatbuffers/table.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/table.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/flatc" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/flatc" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/flatc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/flatutil/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/flatutil/helper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/pos.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/pos.fbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/strupro/PosMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/PosMessage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/strupro/Position.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/Position.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/strupro/TalkMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/TalkMessage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ scenes/proto/flat/sample/test.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/test.fbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/package.fbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/iconnection.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/iconnmanger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/idatapack.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/imessage.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/imsghandler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/irequest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/irouter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/iserver.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connection.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connmanager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/datapack.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/msghandler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/request.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/router.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/server_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/aoi/aoi.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/aoi/aoi_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/aoi/gird.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/bubble/bubble_chat.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/bubble/bubble_chat.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/bubble/bubble_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/scens/bubble/bubble_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/constcode/area.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/constcode/message.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/entity/entity.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/entity/player.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/core/scens/entity/unit.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/pos.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/pos.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/tcp/iface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/iface/iconnection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/tcp/iface/imessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/iface/imessage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/tcp/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/mnet/connection.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +66,12 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ scenes" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/util/api/kcp" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/util/api/kcp" />
       <recent name="$PROJECT_DIR$/ scenes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

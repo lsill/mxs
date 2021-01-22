@@ -23,6 +23,5 @@ table TalkMessage {
     pos:Position;
     s:string;
 }
-
 root_type PosMessage;
 root_type TalkMessage;

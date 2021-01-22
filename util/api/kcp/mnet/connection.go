@@ -1,21 +1,23 @@
 package mnet
 
-import "C"
 import (
 	"errors"
+	"github.com/astaxie/beego/logs"
+	"github.com/xtaci/kcp-go"
 	"io"
 	"mxs/log"
+	"mxs/scenes/proto/flat/flatbuffers"
 	"mxs/util"
-	"mxs/util/api/tcp/iface"
+	"mxs/util/api/kcp/iface"
 	"net"
 	"sync"
 )
 
-type Connection struct {
+type KConnection struct {
 	// tcp 服务
-	TcpServer iface.IServer
+	Server iface.IServer
 	// 当前连接的socket TCP套接字
-	Conn *net.TCPConn
+	Conn *kcp.UDPSession
 	// 当前连接的ID，可以称作为SessionID,ID全局唯一
 	ConnID uint32
 	// 当前连接的关闭状态
@@ -36,9 +38,9 @@ type Connection struct {
 }
 
 // 创建连接的方法
-func NewConnecion(server iface.IServer,conn *net.TCPConn, connId uint32, msgHandler iface.IMsgHandle) *Connection {
-	c := &Connection{
-		TcpServer: server,	// 将隶属的server传递进来
+func NewConnecion(server iface.IServer,conn *kcp.UDPSession, connId uint32, msgHandler iface.IMsgHandle) *KConnection {
+	c := &KConnection{
+		Server: server,	// 将隶属的server传递进来
 		Conn:         conn,
 		ConnID:       connId,
 		isClosed:     false,
@@ -49,14 +51,14 @@ func NewConnecion(server iface.IServer,conn *net.TCPConn, connId uint32, msgHand
 		property: make(map[string]interface{}), // 初始化连接属性map
 	}
 	// 将新创建的Conn添加到连接管理中
-	c.TcpServer.GetConnMgr().Add(c) // 将当前心新创建的连接添加到ConnManager中
+	c.Server.GetConnMgr().Add(c) // 将当前心新创建的连接添加到ConnManager中
 	return  c
 }
 
 // 处理conn读数据的Goroutine
-func (c *Connection) StartReader() {
-	log.Debug("Reader %v is running", c.RemoteAddr())
-	defer log.Debug("%s conn reader exit!",c.RemoteAddr().String())
+func (c *KConnection) StartReader() {
+	log.Debug("Reader %v is running", c.GetConnectionAddr())
+	defer log.Debug("%s conn reader exit!",c.GetConnectionAddr().String())
 	defer c.Stop()
 	for {
 		// 创建拆包解包的对象
@@ -64,12 +66,17 @@ func (c *Connection) StartReader() {
 
 		// 读取客户端的msg head
 		headData := make([]byte, dp.GetHeadLen())
-		if _, err := io.ReadFull(c.GetTCPConnection(), headData); err != nil{
-			log.Error("read msg head error!")
-			c.ExitBuffChan<-true
-			break
-		}
-
+		var buffer = make([]byte, 1024, 1024)
+		 _, err := c.Conn.Read(buffer)
+		 if err != nil {
+		 	if err == io.EOF{
+				c.ExitBuffChan<-true
+		 		break
+			}
+			logs.Debug("kcp read err %v", err)
+			 c.ExitBuffChan<-true
+		 	break
+		 }
 		// 拆包 得到msgid 和 datalen 放在msg中
 		msg , err := dp.UnPack(headData)
 		if err != nil {
@@ -77,17 +84,6 @@ func (c *Connection) StartReader() {
 			c.ExitBuffChan<-true
 			break
 		}
-
-		// 根据datalen 读取data，放在msg.Data中
-		var data []byte
-		if msg.GetDataLen() > 0 {
-			data = make([]byte, msg.GetDataLen())
-			if _, err := io.ReadFull(c.GetTCPConnection(), data); err != nil {
-				log.Error("read msg data error:%v", err)
-				continue
-			}
-		}
-		msg.SetData(data)
 
 		// 得到当前客户端请求的Request数据
 		req := Request{
@@ -108,9 +104,9 @@ func (c *Connection) StartReader() {
 /*
 	写消息Goroutine,用户将数据发送给客户端
  */
-func (c *Connection) StartWriter() {
-	log.Debug("Writer %v is running", c.RemoteAddr())
-	defer log.Debug("conn Writer %v exit!", c.RemoteAddr())
+func (c *KConnection) StartWriter() {
+	log.Debug("Writer %v is running", c.GetConnectionAddr())
+	defer log.Debug("conn Writer %v exit!", c.GetConnectionAddr())
 	//defer c.Stop()
 	for {
 		select {
@@ -146,14 +142,14 @@ func (c *Connection) StartWriter() {
 }
 
 
-func (c *Connection) Start() {
+func (c *KConnection) Start() {
 	// 1. 开启从客户端读取数据流程的goroutine
 	go c.StartReader()
 	// 2.开启写回客户端数据流程的goroutine
 	go c.StartWriter()
 
 	// 按照传进来创建连接时需要处理的业务，执行钩子方法
-	c.TcpServer.CallOnConnStart(c)
+	c.Server.CallOnConnStart(c)
 
 	for {
 		select {
@@ -165,11 +161,11 @@ func (c *Connection) Start() {
 }
 
 // 获取远程客户端的地址信息
-func (c *Connection) RemoteAddr() net.Addr{
+func (c *KConnection) RemoteAddr() net.Addr{
 	return c.Conn.RemoteAddr()
 }
 
-func (c *Connection) Stop() {
+func (c *KConnection) KConnection() {
 	// 1.如果当前连接已经关闭
 	if c.isClosed == true {
 		return
@@ -177,7 +173,7 @@ func (c *Connection) Stop() {
 	c.isClosed = true
 	// TODO Connection Stop() 如果用户注册了该连接的关闭回调业务，那么此刻应该显示调用
 	log.Debug("conn stop callonconnstop")
-	c.TcpServer.CallOnConnStop(c)
+	c.Server.CallOnConnStop(c)
 
 
 	// 关闭socket连接
@@ -186,7 +182,7 @@ func (c *Connection) Stop() {
 	// 通知从缓冲队列读取数据的业务，该连接已经关闭
 	c.ExitBuffChan <- true
 	// 将连接从连接管理器中删除
-	c.TcpServer.GetConnMgr().Remove(c)
+	c.Server.GetConnMgr().Remove(c)
 	// 关闭该连接的全部管道
 	close(c.ExitBuffChan)
 	close(c.msgBuffChan)
@@ -194,16 +190,16 @@ func (c *Connection) Stop() {
 }
 
 // 获取当前连接id
-func (c *Connection) GetConnID() uint32{
+func (c *KConnection) GetConnID() uint32{
 	return c.ConnID
 }
 
-func (c *Connection) GetTCPConnection() *net.TCPConn {
+func (c *KConnection) GetKCPConnection() *kcp.UDPSession {
 	return c.Conn
 }
 
 // 直接将Message数据发送数据给远程的TCP客户端
-func (c *Connection) SendMsg(msgId uint32, data []byte) error {
+func (c *KConnection) SendMsg(msgId uint32, data *flatbuffers.Builder) error {
 	if c.isClosed == true {
 		return errors.New("Connection closed when send msg")
 	}
@@ -223,7 +219,7 @@ func (c *Connection) SendMsg(msgId uint32, data []byte) error {
 }
 
 
-func (c *Connection) SendBuffMsg(msgId uint32, data []byte) error {
+func (c *KConnection) SendBuffMsg(msgId uint32, data *flatbuffers.Builder) error {
 	if c.isClosed == true {
 		return errors.New("Connection closed when send msg")
 	}
@@ -240,14 +236,14 @@ func (c *Connection) SendBuffMsg(msgId uint32, data []byte) error {
 }
 
 // 设置连接属性
-func (c *Connection)SetProperty(key string, value interface{}) {
+func (c *KConnection)SetProperty(key string, value interface{}) {
 	c.propertyLock.Lock()
 	defer c.propertyLock.Unlock()
 	c.property[key] = value
 }
 
 // 获取链接属性
-func (c *Connection)GetProperty(key string) (interface{}, error) {
+func (c *KConnection)GetProperty(key string) (interface{}, error) {
 	c.propertyLock.Lock()
 	defer c.propertyLock.Unlock()
 	if value, ok := c.property[key]; ok {
@@ -258,9 +254,29 @@ func (c *Connection)GetProperty(key string) (interface{}, error) {
 }
 
 // 删除链接属性
-func (c *Connection) RemoveProperty(key string) {
+func (c *KConnection) RemoveProperty(key string) {
 	c.propertyLock.Lock()
 	defer c.propertyLock.Unlock()
 	delete(c.property, key)
 }
+
+
+
+func (c *KConnection) GetUdpSession() *kcp.UDPSession {
+	return  c.Conn
+}
+
+func (c *KConnection) GetKcpId() uint32 {
+	return c.ConnID
+}
+
+func (c *KConnection) GetConnectionAddr() net.Addr {
+	return  c.RemoteAddr()
+}
+
+
+func (c *KConnection) Stop() {
+
+}
+
 
