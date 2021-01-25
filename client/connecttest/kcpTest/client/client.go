@@ -9,6 +9,7 @@ import (
 	"mxs/scenes/proto/flat/sample/flatutil"
 	"mxs/scenes/proto/flat/sample/strupro"
 	"mxs/util/api/kcp/mnet"
+	"time"
 )
 
 
@@ -30,7 +31,7 @@ func main() {
 	str := string(bytes)
 	log.Debug("str is %v", str)
 	//bytes := []byte("test")
-	objM := mnet.NewMsgPackage(uint32(1),bytes, int32(datalen))
+	objM := mnet.NewMsgPackage(uint32(0),bytes, int32(datalen))
 	msg, err := dp.Pack(objM)
 	if err != nil {
 		panic(err)
@@ -45,7 +46,14 @@ func main() {
 	log.Debug("%d", obj.GetTyp())
 	str = string(obj.GetData())
 	log.Debug("%s", str)
-	conn.Write(msg)
+	go func() {
+		for {
+			select {
+			case <- time.After(2*time.Second):
+				conn.Write(msg)
+			}
+		}
+	}()
 	for{
 		var buffer = make([]byte, 1024, 1024)
 		n, _ := conn.Read(buffer)

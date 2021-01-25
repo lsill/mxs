@@ -2,26 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/TestMessage.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/scenes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/scenes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/core/proc/proto/pingheart.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/core/proc/protoenum.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/package.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/package.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/scenes" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/scenes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/scenes.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/scenes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/iconnection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/idatapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/idatapack.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/imessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/imessage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/irequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/irequest.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/connmanager.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connmanager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/datapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/datapack.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/request.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/tcp/iface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/iface/iconnection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/tcp/iface/imessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/iface/imessage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/tcp/mnet/datapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/mnet/datapack.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/globalobj.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/globalobj.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,8 +197,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go</url>
-          <line>58</line>
+          <line>66</line>
           <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/scenes/core/proc/protoenum.go</url>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

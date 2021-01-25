@@ -1,6 +1,7 @@
 package mnet
 
 import (
+	"context"
 	"errors"
 	"github.com/xtaci/kcp-go"
 	"io"
@@ -9,6 +10,7 @@ import (
 	"mxs/util/api/kcp/iface"
 	"net"
 	"sync"
+	"time"
 )
 
 type KConnection struct {
@@ -33,10 +35,15 @@ type KConnection struct {
 	property map[string]interface{}
 	//保护连接属性修改的锁
 	propertyLock sync.RWMutex
+
+	context context.Context
+	cancel context.CancelFunc
 }
 
 // 创建连接的方法
 func NewConnecion(server iface.IServer,conn *kcp.UDPSession, connId uint32, msgHandler iface.IMsgHandle) *KConnection {
+	log.Debug("new connnection")
+	_content, _cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	c := &KConnection{
 		Server: server,	// 将隶属的server传递进来
 		Conn:         conn,
@@ -46,7 +53,9 @@ func NewConnecion(server iface.IServer,conn *kcp.UDPSession, connId uint32, msgH
 		MsgHandler: msgHandler,
 		msgChan: make(chan []byte),
 		msgBuffChan: make(chan []byte, util.GloUtil.MaxMsgChanLen),
-		property: make(map[string]interface{}), // 初始化连接属性map
+		property: make(map[string]interface{}), // 初始化连接属性map,
+		context:_content,
+		cancel: _cancel,
 	}
 	// 将新创建的Conn添加到连接管理中
 	c.Server.GetConnMgr().Add(c) // 将当前心新创建的连接添加到ConnManager中
@@ -62,16 +71,18 @@ func (c *KConnection) StartReader() {
 		// 创建拆包解包的对象
 		dp := NewDataPack()
 
-		// 读取客户端的msg head
 		var buffer = make([]byte, 1024, 1024)
 		 _, err := c.Conn.Read(buffer)
+		 c.Conn.SetDeadline(time.Now().Add(6 * time.Second))	// 心跳时间设置6秒
 		 if err != nil {
 		 	if err == io.EOF{
 				c.ExitBuffChan<-true
 		 		break
 			}
 			log.Debug("kcp read err %v", err)
-			 c.ExitBuffChan<-true
+			 if c.isClosed == false {
+				 c.ExitBuffChan<-true
+			 }
 		 	break
 		 }
 		// 拆包 得到msgid 和 datalen 放在msg中
@@ -81,7 +92,9 @@ func (c *KConnection) StartReader() {
 		log.Debug("get msg len is %v",msg.GetDataLen())
 		if err != nil {
 			log.Error("unpack error")
-			c.ExitBuffChan<-true
+			if c.isClosed == false {
+				c.ExitBuffChan<-true
+			}
 			break
 		}
 
@@ -163,30 +176,6 @@ func (c *KConnection) Start() {
 // 获取远程客户端的地址信息
 func (c *KConnection) RemoteAddr() net.Addr{
 	return c.Conn.RemoteAddr()
-}
-
-func (c *KConnection) KConnection() {
-	// 1.如果当前连接已经关闭
-	if c.isClosed == true {
-		return
-	}
-	c.isClosed = true
-	// TODO Connection Stop() 如果用户注册了该连接的关闭回调业务，那么此刻应该显示调用
-	log.Debug("conn stop callonconnstop")
-	c.Server.CallOnConnStop(c)
-
-
-	// 关闭socket连接
-	c.Conn.Close()
-
-	// 通知从缓冲队列读取数据的业务，该连接已经关闭
-	c.ExitBuffChan <- true
-	// 将连接从连接管理器中删除
-	c.Server.GetConnMgr().Remove(c)
-	// 关闭该连接的全部管道
-	close(c.ExitBuffChan)
-	close(c.msgBuffChan)
-	close(c.msgChan)
 }
 
 // 获取当前连接id
@@ -276,7 +265,34 @@ func (c *KConnection) GetConnectionAddr() net.Addr {
 
 
 func (c *KConnection) Stop() {
+	// 1.如果当前连接已经关闭
+	if c.isClosed == true {
+		return
+	}
+	c.isClosed = true
+	// TODO Connection Stop() 如果用户注册了该连接的关闭回调业务，那么此刻应该显示调用
+	log.Debug("conn stop callonconnstop")
+	c.Server.CallOnConnStop(c)
 
+
+	// 关闭socket连接
+	c.Conn.Close()
+
+	// 通知从缓冲队列读取数据的业务，该连接已经关闭
+	c.ExitBuffChan <- true
+	// 将连接从连接管理器中删除
+	c.Server.GetConnMgr().Remove(c)
+	// 关闭该连接的全部管道
+	close(c.ExitBuffChan)
+	close(c.msgBuffChan)
+	close(c.msgChan)
 }
 
 
+func (c *KConnection) SetDeadline() {
+	c.context, c.cancel = context.WithTimeout(context.Background(), 3*time.Second)
+}
+
+func (c *KConnection) GetContent() context.Context {
+	return c.context
+}

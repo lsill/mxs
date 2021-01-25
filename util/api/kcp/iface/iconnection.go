@@ -1,6 +1,7 @@
 package iface
 
 import (
+	"context"
 	"github.com/xtaci/kcp-go"
 	"net"
 )
@@ -27,4 +28,8 @@ type IKConnection interface {
 	GetProperty(key string) (interface{}, error)
 	// 移除连接属性
 	RemoveProperty(key string)
+	// 设置连接断开时间
+	SetDeadline()
+
+	GetContent() context.Context
 }
