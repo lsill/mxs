@@ -1,7 +1,6 @@
 package mnet
 
 import (
-	"mxs/scenes/proto/flat/flatbuffers"
 	"mxs/util/api/kcp/iface"
 )
 
@@ -16,11 +15,11 @@ func (r *Request) GetConnection() iface.IKConnection {
 }
 
 // 获取请求消息的数据
-func (r *Request) GetData() *flatbuffers.Builder {
-	return r.msg.Builder()
+func (r *Request) GetData() []byte {
+	return r.msg.GetData()
 }
 
 // 获取请求消息的id
-func (r *Request) GetMsgTyp() uint32{
-	return r.msg.Typ()
+func (r *Request) GetMsgTyp() uint32 {
+	return r.msg.GetTyp()
 }

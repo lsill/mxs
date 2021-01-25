@@ -3,7 +3,7 @@ package mnet
 import (
 	"errors"
 	"mxs/log"
-	"mxs/util/api/Kcp/iface"
+	"mxs/util/api/kcp/iface"
 	"sync"
 )
 

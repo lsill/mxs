@@ -6,7 +6,6 @@ package iface
  */
 
 type IDataPack interface {
-	GetHeadLen()	uint32             // 获取包头长度的方法
 	Pack(msg IMessage) ([]byte, error) // 封包方法
 	UnPack([]byte)(IMessage, error)    // 拆包方法
 }

@@ -34,12 +34,14 @@ type GloBalObj struct {
  */
 var GloUtil *GloBalObj
 var WebsocketObj *WebsocketConfig
+var SencesNet *GloBalObj
 
 // 读取用户配置文件
-func (g *GloBalObj) Reload() {
+func (g *GloBalObj) Reload(file string) {
 	_path, _ := os.Getwd()
 	_path = strings.Replace(_path,"gamex", "", 1)
-	path := _path+ "/util/api/conf/api.json"
+	_path = strings.Replace(_path,"scenes", "", 1)
+	path := _path+ file
 	logs.Release("path is %s", path)
 	data ,err := ioutil.ReadFile(path)
 	if err != nil {
@@ -66,8 +68,21 @@ func init() {
 		MaxMsgChanLen:1000,
 	}
 	// 从配置文件中加载一些配置参数
-	GloUtil.Reload()
+	GloUtil.Reload("/util/api/conf/api.json")
+	SencesNet = &GloBalObj{
+		Host:             "",
+		TcpPort:          0,
+		Name:             "",
+		MaxPacketSize:    0,
+		MaxConn:          0,
+		Version:          "",
+		MaxWorkerTaskLen: 0,
+		MaxMsgChanLen:    0,
+		ConFilePath:      "",
+	}
+	SencesNet.Reload("/util/api/conf/api.json")
 }
+
 
 /*func (g *WebsocketConfig) Reload() {
 	data, err := ioutil.ReadFile("conf/websocket.json")

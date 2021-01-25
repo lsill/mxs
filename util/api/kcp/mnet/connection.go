@@ -2,11 +2,9 @@ package mnet
 
 import (
 	"errors"
-	"github.com/astaxie/beego/logs"
 	"github.com/xtaci/kcp-go"
 	"io"
 	"mxs/log"
-	"mxs/scenes/proto/flat/flatbuffers"
 	"mxs/util"
 	"mxs/util/api/kcp/iface"
 	"net"
@@ -65,7 +63,6 @@ func (c *KConnection) StartReader() {
 		dp := NewDataPack()
 
 		// 读取客户端的msg head
-		headData := make([]byte, dp.GetHeadLen())
 		var buffer = make([]byte, 1024, 1024)
 		 _, err := c.Conn.Read(buffer)
 		 if err != nil {
@@ -73,12 +70,15 @@ func (c *KConnection) StartReader() {
 				c.ExitBuffChan<-true
 		 		break
 			}
-			logs.Debug("kcp read err %v", err)
+			log.Debug("kcp read err %v", err)
 			 c.ExitBuffChan<-true
 		 	break
 		 }
 		// 拆包 得到msgid 和 datalen 放在msg中
-		msg , err := dp.UnPack(headData)
+		msg , err := dp.UnPack(buffer)
+		log.Debug("get msg is %v", string(msg.GetData()))
+		log.Debug("get msg typ is %v", msg.GetTyp())
+		log.Debug("get msg len is %v",msg.GetDataLen())
 		if err != nil {
 			log.Error("unpack error")
 			c.ExitBuffChan<-true
@@ -199,14 +199,14 @@ func (c *KConnection) GetKCPConnection() *kcp.UDPSession {
 }
 
 // 直接将Message数据发送数据给远程的TCP客户端
-func (c *KConnection) SendMsg(msgId uint32, data *flatbuffers.Builder) error {
+func (c *KConnection) SendMsg(msgId uint32, data []byte, datalen int32) error {
 	if c.isClosed == true {
 		return errors.New("Connection closed when send msg")
 	}
 
 	// 将data封包，并且发送
 	dp := NewDataPack()
-	msg , err := dp.Pack(NewMsgPackage(msgId, data))
+	msg , err := dp.Pack(NewMsgPackage(msgId, data, datalen))
 	if err != nil {
 		log.Error("Pack error msg id = %d", msgId)
 		return errors.New("Pack error msg")
@@ -219,14 +219,14 @@ func (c *KConnection) SendMsg(msgId uint32, data *flatbuffers.Builder) error {
 }
 
 
-func (c *KConnection) SendBuffMsg(msgId uint32, data *flatbuffers.Builder) error {
+func (c *KConnection) SendBuffMsg(msgId uint32, data []byte,datalen int32) error {
 	if c.isClosed == true {
 		return errors.New("Connection closed when send msg")
 	}
 
 	// 将data封包，并且发送
 	dp := NewDataPack()
-	msg ,err := dp.Pack(NewMsgPackage(msgId, data))
+	msg ,err := dp.Pack(NewMsgPackage(msgId, data, datalen))
 	if err != nil {
 		log.Error("buff Pack error msg id = %d", msgId)
 		return errors.New("buff Pack error msg")

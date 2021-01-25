@@ -2,29 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/package.fbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/iconnection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/iconnmanger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/idatapack.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/imessage.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/imsghandler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/irequest.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/irouter.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/iface/iserver.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connmanager.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/datapack.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/message.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/msghandler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/request.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/router.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/api/kcp/mnet/server_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/TestMessage.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/scenes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/scenes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/pos.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/pos.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/package.fbs" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/package.fbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/iconnection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/idatapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/idatapack.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/imessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/imessage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/irequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/irequest.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/connmanager.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connmanager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/datapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/datapack.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/request.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/tcp/iface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/iface/iconnection.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/tcp/iface/imessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/iface/imessage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/tcp/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/mnet/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/api/tcp/mnet/datapack.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/tcp/mnet/datapack.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/globalobj.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/globalobj.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,14 +72,14 @@
       <recent name="$PROJECT_DIR$/ scenes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scenes/proto/flat/sample/strupro" />
       <recent name="$PROJECT_DIR$/ scenes" />
       <recent name="$PROJECT_DIR$/gamex" />
       <recent name="$PROJECT_DIR$/util" />
       <recent name="$PROJECT_DIR$/util/api" />
-      <recent name="$PROJECT_DIR$/gamex/core/scens" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build mxs/gamex">
+  <component name="RunManager" selected="Go Build.go build mxs/client/connecttest/kcpTest/client">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="mx" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -101,12 +98,12 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build mxs/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build mxs/client/connecttest/kcpTest/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="mxs" />
       <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/client/quicclient.go" />
-      <package value="mxs/client" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go" />
+      <package value="mxs/client/connecttest/kcpTest/client" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -149,18 +146,18 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.go build mxs" />
-      <item itemvalue="Go Build.go build mxs/client" />
       <item itemvalue="Go Build.go build mxs/kcpTest/server" />
       <item itemvalue="Go Build.go build mxs/client/connecttest/websocket" />
       <item itemvalue="Go Build.go build mxs/gamex" />
+      <item itemvalue="Go Build.go build mxs/client/connecttest/kcpTest/client" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build mxs/client/connecttest/kcpTest/client" />
         <item itemvalue="Go Build.go build mxs/gamex" />
         <item itemvalue="Go Build.go build mxs" />
         <item itemvalue="Go Build.go build mxs/client/connecttest/websocket" />
         <item itemvalue="Go Build.go build mxs/kcpTest/server" />
-        <item itemvalue="Go Build.go build mxs/client" />
       </list>
     </recent_temporary>
   </component>
@@ -209,6 +206,11 @@
           <url>file://$PROJECT_DIR$/client/connecttest/websocket/server.go</url>
           <line>15</line>
           <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go</url>
+          <line>58</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

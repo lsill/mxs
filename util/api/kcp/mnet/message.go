@@ -1,26 +1,27 @@
 package mnet
 
-import (
-	"mxs/scenes/proto/flat/flatbuffers"
-	"mxs/util/api/kcp/iface"
-)
-
 type Message struct {
-	typ uint32 // 包类型
-	builder *flatbuffers.Builder
+	Typ uint32 // 包类型
+	DataLen int32	// 数据长度
+	Data []byte
 }
 
-func (m *Message) Typ() uint32{
-	return m.typ
+func (m *Message) GetTyp() uint32{
+	return m.Typ
 }
 
-func (m *Message) Builder() *flatbuffers.Builder {
-	return m.builder
+func (m *Message) GetData() []byte {
+	return m.Data
 }
 
-func NewMsgPackage(typ uint32, data *flatbuffers.Builder) iface.IMessage{
+func (m *Message) GetDataLen() int32 {
+	return m.DataLen
+}
+
+func NewMsgPackage(typ uint32, data []byte, datalen int32) *Message{
 	return &Message{
-		typ:     typ,
-		builder: data,
+		Typ:     typ,
+		Data: data,
+		DataLen: datalen,
 	}
 }

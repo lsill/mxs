@@ -2,7 +2,6 @@ package iface
 
 import (
 	"github.com/xtaci/kcp-go"
-	"mxs/scenes/proto/flat/flatbuffers"
 	"net"
 )
 
@@ -19,9 +18,9 @@ type IKConnection interface {
 	// 获取远程客户端地址信息
 	RemoteAddr() net.Addr
 	// 直接将Message数据发送给远程的TCP客户端(无缓冲)
-	SendMsg(MsgId uint32, data *flatbuffers.Builder) error
+	SendMsg(MsgId uint32, data []byte, datalen int32) error
 	// 直接将Message数据发送给远程的TCP客户端（有缓冲）
-	SendBuffMsg(MsgId uint32, data *flatbuffers.Builder) error	// 添加带缓冲发送消息接口
+	SendBuffMsg(MsgId uint32, data []byte,datalen int32) error	// 添加带缓冲发送消息接口
 	// 设置连接属性
 	SetProperty(key string, value interface{})
 	// 获取链接属性

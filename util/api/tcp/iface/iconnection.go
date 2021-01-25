@@ -1,7 +1,6 @@
 package iface
 
 import (
-	"github.com/xtaci/kcp-go"
 	"net"
 )
 
@@ -13,7 +12,7 @@ type IConnection interface {
 	// 停止连接，结束当前连接状态M
 	Stop()
 	// 从当前连接获取原始的socket TCPConn
-	GetKCPConnection() *kcp.UDPSession
+	GetTCPConnection() *net.TCPConn
 	// 获取当前连接id
 	GetConnID() uint32
 	// 获取远程客户端地址信息

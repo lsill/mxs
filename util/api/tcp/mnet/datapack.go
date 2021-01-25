@@ -25,6 +25,7 @@ func(dp *DataPack) GetHeadLen() uint32{
 	return 8
 }
 
+
 // 封包方法（压缩数据） 此处留下疑问 为什么要用小端序
 func (dp *DataPack) Pack(msg iface.IMessage)([]byte, error){
 	// 创建一个存放bytes字节的缓冲
