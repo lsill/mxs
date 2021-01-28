@@ -1,14 +1,20 @@
 package proc
 
 import (
+	"mxs/scenes/constcode"
 	"mxs/scenes/core/proc/proto"
+	"mxs/scenes/core/world/scenc"
 	"mxs/util/api/kcp/iface"
 )
 
-const (
-	PingHeart = iota+0	// 连接心跳
-)
+
 
 func LoadProto(s iface.IServer) {
-	proto.AddHeartBeating(PingHeart, s)
+	s.SetOnConnStart(scenc.OnConnectionAdd)
+	s.SetOnConnStop(scenc.OnConnectionDel)
+
+
+	proto.AddHeartBeating(constcode.PingHeart, s)
+	proto.AddMoveApi(constcode.PositionMine, s)
 }
+

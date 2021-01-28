@@ -6,7 +6,7 @@ package iface
 type IMessage interface {
 	GetTyp()	uint32 	// 获取消息类型
 	GetData() []byte// 获取消息内容
-	GetDataLen() int32
+	GetDataLen() int
 }
 
 

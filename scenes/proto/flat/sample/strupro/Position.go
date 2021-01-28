@@ -40,16 +40,8 @@ func (rcv *Position) MutateZ(n float32) bool {
 	return rcv._tab.MutateFloat32(rcv._tab.Pos+flatbuffers.UOffsetT(8), n)
 }
 
-func (rcv *Position) V() float32 {
-	return rcv._tab.GetFloat32(rcv._tab.Pos + flatbuffers.UOffsetT(12))
-}
-func (rcv *Position) MutateV(n float32) bool {
-	return rcv._tab.MutateFloat32(rcv._tab.Pos+flatbuffers.UOffsetT(12), n)
-}
-
-func CreatePosition(builder *flatbuffers.Builder, x float32, y float32, z float32, v float32) flatbuffers.UOffsetT {
-	builder.Prep(4, 16)
-	builder.PrependFloat32(v)
+func CreatePosition(builder *flatbuffers.Builder, x float32, y float32, z float32) flatbuffers.UOffsetT {
+	builder.Prep(4, 12)
 	builder.PrependFloat32(z)
 	builder.PrependFloat32(y)
 	builder.PrependFloat32(x)

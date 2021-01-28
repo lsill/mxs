@@ -122,13 +122,13 @@ func (m *AOIManager) GetGIDByPos(x, y float32) int {
 
 // 通过横纵坐标获取周边九宫格内的全部entityids
 
-func (m *AOIManager) GetEIDsByPos(x, y float32) []int {
+func (m *AOIManager) GetEIDsByPos(x, y float32) []int32 {
 	// 根据横纵坐标获取当前坐标属于哪个格子
 	gid := m.GetGIDByPos(x, y)
 
 	// 根据格子id的得到周边九宫格的信息
 	grids := m.GetSurroundGridsByGid(gid)
-	entityids := make([]int, 0, len(grids))
+	entityids := make([]int32, 0, len(grids))
 	for _, v := range grids {
 		entityids = append(entityids, v.GetAllEntityIDs()...)
 		log.Debug("====> grid ID : %d, pids: %v ====", v.GID, v.GetAllEntityIDs())
@@ -137,30 +137,30 @@ func (m *AOIManager) GetEIDsByPos(x, y float32) []int {
 }
 
 // 通过GID获取当前格子的全部entituid
-func (m *AOIManager) GetEidsByGid(gid int) (entityIds []int) {
+func (m *AOIManager) GetEidsByGid(gid int) (entityIds []int32) {
 	entityIds = m.grids[gid].GetAllEntityIDs()
 	return
 }
 
 // 移除一个格子中的entityid
-func (m *AOIManager) RemoveEidFromFGrid(eid, gid int) {
+func (m *AOIManager) RemoveEidFromFGrid(eid int32, gid int) {
 	m.grids[gid].RemoveEntity(eid)
 }
 
 // 添加一个entity到一个格子中
-func(m *AOIManager) AddEidToGrid(eid, gid int) {
+func(m *AOIManager) AddEidToGrid(eid int32, gid int) {
 	m.grids[gid].AddEntity(eid)
 }
 
 // 通过横纵坐标添加一个entity到一个格子中
-func (m *AOIManager) AddToGridByPos(eid int, x, y float32) {
+func (m *AOIManager) AddToGridByPos(eid int32, x, y float32) {
 	gid := m.GetGIDByPos(x, y)
 	grid := m.grids[gid]
 	grid.AddEntity(eid)
 }
 
 // 通过横纵坐标从格子中删除一个entity
-func (m *AOIManager) RemoveFromGridByPos(eid int, x, y float32) {
+func (m *AOIManager) RemoveFromGridByPos(eid int32, x, y float32) {
 	gid := m.GetGIDByPos(x, y)
 	grid := m.grids[gid]
 	grid.RemoveEntity(eid)

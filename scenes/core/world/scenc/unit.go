@@ -1,4 +1,4 @@
-package entity
+package scenc
 
 type Unit struct {
 	*Entity

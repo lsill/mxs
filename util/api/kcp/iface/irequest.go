@@ -9,4 +9,6 @@ type IRequest interface {
 	GetConnection() IKConnection // 获取请求连接信息
 	GetData()	[]byte         // 获取请求消息的数据
 	GetMsgTyp() uint32           // 获取请求消息的类型
+	GetDataLen() int
+	ReSetMsg([]byte, uint32)
 }

@@ -7,12 +7,11 @@ import (
 
 type PingRouter struct {
 	mnet.BaseRouter
-	out chan iface.IRequest
 }
 
 
-
-func (this *PingRouter) Handle(req iface.IRequest) {
+// 心跳连接不实现
+func (this *PingRouter) Handle(req iface.IRequest){
 
 }
 

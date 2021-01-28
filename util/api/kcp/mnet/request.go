@@ -23,3 +23,23 @@ func (r *Request) GetData() []byte {
 func (r *Request) GetMsgTyp() uint32 {
 	return r.msg.GetTyp()
 }
+
+
+type Response struct {
+	conn iface.IKConnection
+	Data []byte
+	Typ uint32
+}
+
+// 获取请求消息的数据
+func (r *Request) ReSetMsg(data []byte,typ uint32) {
+	r.msg = &Message{
+		Typ:     typ,
+		DataLen: len(data),
+		Data:    data,
+	}
+}
+
+func(r *Request) GetDataLen() int {
+	return len(r.GetData())
+}

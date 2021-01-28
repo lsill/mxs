@@ -1,0 +1,24 @@
+namespace strupro;
+attribute "priority";
+
+struct Position {
+    x:float;    // 平面x轴
+    y:float;    // 平面y轴
+    z:float;    // 高z轴
+}
+
+table Entity {
+    eid:int;  // 实体id
+    pos:Position; // 实体位置
+    weight:uint32;    // 实体重量
+    angle:float32;   // 实体角度
+    temperature:float32;  // 实体温度
+    bubble:string;  // 气泡消息
+}
+
+// 场景中的实体信息
+table Girds {
+    entity:[Entity];
+}
+
+root_type Entity;

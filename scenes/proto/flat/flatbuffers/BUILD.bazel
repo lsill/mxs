@@ -21,3 +21,5 @@ go_library(
     importpath = "mxs/mmo/proto/flat/flatbuffers",
     visibility = ["//visibility:public"],
 )
+
+// ./flatc -g -o ./sample/strupro ./sample/pos.fbs
