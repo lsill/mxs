@@ -42,8 +42,8 @@ func NewEntity() *Entity {
 	IdLock.Unlock()
 	en := &Entity{
 		Eid: id,
-		X:   float32(160 + rand.Intn(10)),
-		Y:   float32(134 + rand.Intn(17)),
+		X:   float32(0 + rand.Intn(10)),
+		Y:   float32(0 + rand.Intn(17)),
 		Z:   0,
 		V:   0,
 	}
@@ -52,6 +52,7 @@ func NewEntity() *Entity {
 
 func (en *Player) SyncPlayers() {
 	pids := WorldMgrObj.AoiMgr.GetEIDsByPos(en.X,en.Y)
+	log.Debug("len pids is %d", len(pids))
 	players := make([]*Player, 0, len(pids))
 	for _,pid := range pids {
 		player := WorldMgrObj.GetPlayerByEid(pid)
@@ -85,12 +86,11 @@ bytes :=  builder.Bytes[builder.Head():]*/
 func OnConnectionAdd(conn iface.IKConnection) {
 	// 创建一个玩家
 	player := NewPlayer(conn)
-	// 同步当前的玩家id坐标 给客户端
-	player.SyncPlayers()
-
 	// 将当前新上线玩家添加到worldmanager中
 	WorldMgrObj.AddPlayer(player)
 	conn.SetProperty("eid", player.Eid)
+	// 同步当前的玩家id坐标 给客户端
+	player.SyncPlayers()
 	log.Release("====> player eid = %d", player.Eid)
 }
 

@@ -18,12 +18,12 @@ func GenEntityProto(builder *flatbuffers.Builder, entity *Entity) flatbuffers.UO
 
 func GenPlayersProto(builder *flatbuffers.Builder, entitys []*Player) flatbuffers.UOffsetT {
 	_h := flatutil.NewFlatBufferHelper(builder, 32)
-	strupro.GirdsStart(builder)
-	offsets := make([]flatbuffers.UOffsetT, len(entitys))
+	offsets := make([]flatbuffers.UOffsetT, 0,len(entitys))
 	for _, play := range entitys {
 		offsets = append(offsets, GenEntityProto(builder, play.Entity))
 	}
 	offset:= _h.CreateUOffsetTArray(strupro.GirdsStartEntityVector, offsets)
+	strupro.GirdsStart(builder)
 	strupro.GirdsAddEntity(builder, offset)
 	return strupro.GirdsEnd(builder)
 }

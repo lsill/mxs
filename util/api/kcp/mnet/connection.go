@@ -188,7 +188,7 @@ func (c *KConnection) GetKCPConnection() *kcp.UDPSession {
 }
 
 // 直接将Message数据发送数据给远程的KCP客户端
-func (c *KConnection) SendMsg(msgId uint32, data []byte, datalen int) error {
+func (c *KConnection) SendMsg(msgId uint32, data []byte, datalen int32) error {
 	if c.isClosed == true {
 		return errors.New("Connection closed when send msg")
 	}
@@ -208,7 +208,7 @@ func (c *KConnection) SendMsg(msgId uint32, data []byte, datalen int) error {
 }
 
 
-func (c *KConnection) SendBuffMsg(msgId uint32, data []byte,datalen int) error {
+func (c *KConnection) SendBuffMsg(msgId uint32, data []byte,datalen int32) error {
 	if c.isClosed == true {
 		return errors.New("Connection closed when send msg")
 	}

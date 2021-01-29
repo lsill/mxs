@@ -2,39 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f6084-c3ed-44a2-9451-31f33e705bf9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scenes/core/proc/proto/moveapi.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/core/world/scenc/bubble_chat.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/core/world/scenc/entity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/core/world/scenc/genentity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/entity.fbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/Entity.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/core/proc/proto/login_on.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client" beforeDir="false" afterPath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/constcode/area.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/constcode/area.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/constcode/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/constcode/message.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scenes/core/proc/proto/pingheart.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/proc/proto/pingheart.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/proc/protoenum.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/proc/protoenum.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/aoi/aoi.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/aoi/aoi.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/aoi/aoi_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/aoi/aoi_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/aoi/gird.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/aoi/gird.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/bubble/bubble_chat.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/bubble/bubble_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/scenc/world_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/constcode/area.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/constcode/area.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/constcode/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/constcode/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/entity/entity.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/entity/player.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/scenc/player.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/core/scens/entity/unit.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/scenc/unit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/BUILD.bazel" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/flatbuffers/BUILD.bazel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/pos.fbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/PosMessage.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/Position.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/Position.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/strupro/TalkMessage.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/core/world/aoi/aoi.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/aoi/aoi.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/core/world/scenc/bubble_chat.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/proc/proto/bubble_chat.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/core/world/scenc/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/scenc/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/core/world/scenc/genentity.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/scenc/genentity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/core/world/scenc/player.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/scenc/player.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/core/world/scenc/world_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/core/world/scenc/world_manager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/proto/flat/sample/flatutil/helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/proto/flat/sample/flatutil/helper.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/iconnection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/iconnection.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/imessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/imessage.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/irequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/irequest.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/iface/irouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/iface/irouter.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/connection.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/message.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/request.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/api/kcp/mnet/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/api/kcp/mnet/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,14 +72,14 @@
       <recent name="$PROJECT_DIR$/ scenes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scenes/core/proc/proto" />
       <recent name="$PROJECT_DIR$/scenes" />
       <recent name="$PROJECT_DIR$/scenes/core/scens/world" />
       <recent name="$PROJECT_DIR$/scenes/core/scens/world/entity" />
       <recent name="$PROJECT_DIR$/scenes/core/scens/entity" />
-      <recent name="$PROJECT_DIR$/scenes/core/scens/aoi" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestAOIManager_GetSurroundGridsByGid in mxs/scenes/core/scens/aoi">
+  <component name="RunManager" selected="Go Build.go build mxs/client/connecttest/kcpTest/client">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="mx" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -120,21 +107,21 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build mxs/client/connecttest/websocket" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="mxs" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/client/connecttest/websocket/server.go" />
-      <package value="mxs/client/connecttest/websocket" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
     <configuration name="go build mxs/gamex" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="mxs" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/gamex/main.go" />
       <package value="mxs/gamex" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build mxs/scenes" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="mxs" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/scenes/scenes.go" />
+      <package value="mxs/scenes" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -161,18 +148,18 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.go build mxs" />
-      <item itemvalue="Go Build.go build mxs/client/connecttest/websocket" />
       <item itemvalue="Go Build.go build mxs/gamex" />
       <item itemvalue="Go Build.go build mxs/client/connecttest/kcpTest/client" />
       <item itemvalue="Go Test.TestAOIManager_GetSurroundGridsByGid in mxs/scenes/core/scens/aoi" />
+      <item itemvalue="Go Build.go build mxs/scenes" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestAOIManager_GetSurroundGridsByGid in mxs/scenes/core/scens/aoi" />
         <item itemvalue="Go Build.go build mxs/client/connecttest/kcpTest/client" />
+        <item itemvalue="Go Build.go build mxs/scenes" />
+        <item itemvalue="Go Test.TestAOIManager_GetSurroundGridsByGid in mxs/scenes/core/scens/aoi" />
         <item itemvalue="Go Build.go build mxs/gamex" />
         <item itemvalue="Go Build.go build mxs" />
-        <item itemvalue="Go Build.go build mxs/client/connecttest/websocket" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +211,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/client/connecttest/kcpTest/client/client.go</url>
-          <line>66</line>
+          <line>64</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">

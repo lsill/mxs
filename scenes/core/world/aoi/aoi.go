@@ -121,7 +121,6 @@ func (m *AOIManager) GetGIDByPos(x, y float32) int {
 }
 
 // 通过横纵坐标获取周边九宫格内的全部entityids
-
 func (m *AOIManager) GetEIDsByPos(x, y float32) []int32 {
 	// 根据横纵坐标获取当前坐标属于哪个格子
 	gid := m.GetGIDByPos(x, y)
@@ -130,6 +129,9 @@ func (m *AOIManager) GetEIDsByPos(x, y float32) []int32 {
 	grids := m.GetSurroundGridsByGid(gid)
 	entityids := make([]int32, 0, len(grids))
 	for _, v := range grids {
+		if len(v.GetAllEntityIDs()) == 0{
+			continue
+		}
 		entityids = append(entityids, v.GetAllEntityIDs()...)
 		log.Debug("====> grid ID : %d, pids: %v ====", v.GID, v.GetAllEntityIDs())
 	}

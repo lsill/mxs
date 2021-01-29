@@ -25,7 +25,7 @@ func NewPlayer(conn iface.IKConnection) *Player {
 
 
 func (p *Player) SendMsg(msgId uint32, data []byte) {
-	p.conn.SendMsg(msgId, data, len(data))
+	p.conn.SendMsg(msgId, data, int32(len(data)))
 }
 
 /*// 告知客户端pid，同步已经生成的实体给客户端

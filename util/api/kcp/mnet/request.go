@@ -35,11 +35,11 @@ type Response struct {
 func (r *Request) ReSetMsg(data []byte,typ uint32) {
 	r.msg = &Message{
 		Typ:     typ,
-		DataLen: len(data),
+		DataLen: int32(len(data)),
 		Data:    data,
 	}
 }
 
-func(r *Request) GetDataLen() int {
-	return len(r.GetData())
+func(r *Request) GetDataLen() int32 {
+	return int32(len(r.GetData()))
 }

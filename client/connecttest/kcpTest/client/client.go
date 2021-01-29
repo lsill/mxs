@@ -5,9 +5,6 @@ import (
 	"encoding/binary"
 	"github.com/xtaci/kcp-go"
 	"mxs/log"
-	"mxs/scenes/proto/flat/flatbuffers"
-	"mxs/scenes/proto/flat/sample/flatutil"
-	"mxs/scenes/proto/flat/sample/strupro"
 	"mxs/util/api/kcp/mnet"
 	"time"
 )
@@ -19,19 +16,20 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	builder := flatbuffers.NewBuilder(2000)
-	h := flatutil.NewFlatBufferHelper(builder, 32)
-	id := h.Pre(builder.CreateString("hello kcp"))
-	strupro.TestMessageStart(builder)
-	strupro.TestMessageAddTeststr(builder, h.Get(id))
-	strupro.TestMessageEnd(builder)
+	//builder := flatbuffers.NewBuilder(2000)
+	//h := flatutil.NewFlatBufferHelper(builder, 32)
+	//id := h.Pre(builder.CreateString("hello kcp"))
+	//strupro.TestMessageStart(builder)
+	//strupro.TestMessageAddTeststr(builder, h.Get(id))
+	//strupro.TestMessageEnd(builder)
 	dp := mnet.NewDataPack()
-	bytes :=  builder.Bytes[builder.Head():]
+	//bytes :=  builder.Bytes[builder.Head():]
+	bytes := make([]byte, 0)
 	datalen := len(bytes)
 	str := string(bytes)
 	log.Debug("str is %v", str)
 	//bytes := []byte("test")
-	objM := mnet.NewMsgPackage(uint32(0),bytes, datalen)
+	objM := mnet.NewMsgPackage(uint32(0),bytes, int32(datalen))
 	msg, err := dp.Pack(objM)
 	if err != nil {
 		panic(err)

@@ -1,6 +1,7 @@
 package scenc
 
 import (
+	logs "mxs/log"
 	"mxs/scenes/constcode"
 	"mxs/scenes/core/world/aoi"
 	"sync"
@@ -30,6 +31,7 @@ func init() {
 func (wm *WorldManager) AddPlayer(player *Player) {
 	// 将player添加到 世界管理器中
 	wm.pLock.Lock()
+	logs.Debug("add eid %d",player.Eid)
 	wm.Players[player.Eid] = player
 	wm.pLock.Unlock()
 
@@ -40,6 +42,7 @@ func (wm *WorldManager) AddPlayer(player *Player) {
 // 从玩家信息表中移除一个玩家
 func (wm *WorldManager) RemovePlayerByPid(eid int32) {
 	wm.pLock.Lock()
+	logs.Debug("eid %d is remove",eid)
 	delete(wm.Players, eid)
 	wm.pLock.Unlock()
 }
