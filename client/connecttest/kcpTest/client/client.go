@@ -5,6 +5,7 @@ import (
 	"encoding/binary"
 	"github.com/xtaci/kcp-go"
 	"mxs/log"
+	"mxs/scenes/proto/flat/sample/strupro"
 	"mxs/util/api/kcp/mnet"
 	"time"
 )
@@ -41,9 +42,7 @@ func main() {
 		panic(err)
 	}
 
-	log.Debug("%d", obj.GetTyp())
 	str = string(obj.GetData())
-	log.Debug("%s", str)
 	go func() {
 		for {
 			select {
@@ -54,9 +53,22 @@ func main() {
 	}()
 	for{
 		var buffer = make([]byte, 1024, 1024)
-		n, _ := conn.Read(buffer)
-		log.Debug("%v", string(buffer[:n]))
-		break
+		conn.Read(buffer) //_, _ :=
+		db := mnet.NewDataPack()
+		getmsg,err := db.UnPack(buffer)
+		if err != nil {
+			log.Error("unpack error")
+		}
+		if getmsg.GetTyp() == 1 {
+			gird := strupro.GetRootAsGirds(getmsg.GetData(), 0)
+			log.Debug("get len is %d", gird.EntityLength())
+			if gird.EntityLength() > 0{
+				entity := &strupro.Entity{}
+				log.Debug("get eid is %v", gird.Entity(entity,0))
+				log.Debug("eid is %d",entity.Eid())
+			}
+
+		}
 	}
 }
 

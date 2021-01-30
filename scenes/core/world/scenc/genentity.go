@@ -8,8 +8,8 @@ import (
 
 func GenEntityProto(builder *flatbuffers.Builder, entity *Entity) flatbuffers.UOffsetT{
 	h := flatutil.NewFlatBufferHelper(builder, 32)
-	strupro.EntityStart(builder)
 	id := h.Pre(strupro.CreatePosition(builder, entity.X, entity.Y, entity.Z))
+	strupro.EntityStart(builder)
 	strupro.EntityAddPos(builder, h.Get(id))
 	strupro.EntityAddEid(builder, entity.Eid)
 	strupro.EntityAddAngle(builder,entity.V)
@@ -18,13 +18,13 @@ func GenEntityProto(builder *flatbuffers.Builder, entity *Entity) flatbuffers.UO
 
 func GenPlayersProto(builder *flatbuffers.Builder, entitys []*Player) flatbuffers.UOffsetT {
 	_h := flatutil.NewFlatBufferHelper(builder, 32)
-	offsets := make([]flatbuffers.UOffsetT, 0,len(entitys))
+	offset := make([]flatbuffers.UOffsetT, 0,len(entitys))
 	for _, play := range entitys {
-		offsets = append(offsets, GenEntityProto(builder, play.Entity))
+		offset = append(offset, GenEntityProto(builder, play.Entity))
 	}
-	offset:= _h.CreateUOffsetTArray(strupro.GirdsStartEntityVector, offsets)
+	offsets:= _h.CreateUOffsetTArray(strupro.GirdsStartEntityVector, offset)
 	strupro.GirdsStart(builder)
-	strupro.GirdsAddEntity(builder, offset)
+	strupro.GirdsAddEntity(builder, offsets)
 	return strupro.GirdsEnd(builder)
 }
 

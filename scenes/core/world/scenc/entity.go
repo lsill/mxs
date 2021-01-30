@@ -42,8 +42,8 @@ func NewEntity() *Entity {
 	IdLock.Unlock()
 	en := &Entity{
 		Eid: id,
-		X:   float32(0 + rand.Intn(10)),
-		Y:   float32(0 + rand.Intn(17)),
+		X:   float32(50 + rand.Intn(10)),
+		Y:   float32(100 + rand.Intn(17)),
 		Z:   0,
 		V:   0,
 	}
@@ -61,14 +61,15 @@ func (en *Player) SyncPlayers() {
 		}
 	}
 	builder := flatbuffers.NewBuilder(20480)
-	GenEntityProto(builder, en.Entity)
+	builder.Finish(GenEntityProto(builder, en.Entity))
 	bytes := builder.Bytes[builder.Head():]
+	players = append(players, en)
 	for _,player := range players {
 		player.SendMsg(constcode.PositionOther, bytes)
 	}
 	builders := flatbuffers.NewBuilder(20480)
-	GenPlayersProto(builders, players)
-	bytes = builders.Bytes[builder.Head():]
+	builders.Finish(GenPlayersProto(builders, players))
+	bytes = builders.Bytes[builders.Head():]
 	en.SendMsg(constcode.PositionMine, bytes)
 }
 
